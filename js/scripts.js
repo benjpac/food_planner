@@ -104,11 +104,17 @@ console.log(recipeDB[1].name + ": " +  findRecipes(recipeDB[1].ingredients, user
 function parseRecipes(recipeDB) {
   var possibleIngredients = [];
   recipeDB.forEach(function(recipe) {
-    recipe.forEach(function(ingredient) {
-      
+    recipe.ingredients.forEach(function(ingredient) {
+      if (possibleIngredients.indexOf(ingredient) === -1)
+      {
+        possibleIngredients.push(ingredient);
+      }
     })
   })
+  return possibleIngredients;
 }
+
+console.log("parseRecipes: " + parseRecipes(recipeDB));
 
 $(document).ready(function() {
 
