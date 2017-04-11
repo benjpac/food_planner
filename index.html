@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Title</title>
+    <title>Food Planner</title>
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="css/styles.css" type="text/css">
     <script type="text/javascript" src="js/jquery-3.2.0.js"></script>
@@ -49,7 +49,7 @@
             <button type="button" class="btn btn-primary btn-sm" data-toggle="offcanvas">Toggle nav</button>
           </p>
           <div class="jumbotron">
-            <h1>Hello, world!</h1>
+            <h1>The Food Planner!</h1>
             <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
           </div>
           <div class="row">
@@ -86,17 +86,96 @@
           </div><!--/row-->
         </div><!--/span-->
         <div class="col-6 col-md-3 sidebar-offcanvas" id="sidebar">
-          <div class="list-group">
-            <a href="#" class="list-group-item active">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
+          <div class="cuisine">
+            <h5>Cuisine</h5>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input class="form-check-input" name ="cuisine" type="checkbox" value="italian">
+                Italian
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input class="form-check-input" name ="cuisine" type="checkbox" value="indian">
+                Indian
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input class="form-check-input" name ="cuisine" type="checkbox" value="thai">
+                Thai
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input class="form-check-input" name ="cuisine" type="checkbox" value="mexican">
+                Mexican
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input class="form-check-input" name ="cuisine" type="checkbox" value="american">
+                American
+              </label>
+            </div>
+          </div>
+          <div class="cooking-time">
+            <h5>Time</h5>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input class="form-check-input" name ="time" type="checkbox" value="under-20">
+                Quick (20 mins)
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input class="form-check-input" name ="time" type="checkbox" value="standard">
+                Standard (20 - 60 mins)
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input class="form-check-input" name ="time" type="checkbox" value="slow">
+                Slow (60+ mins)
+              </label>
+            </div>
+          </div>
+
+          <div class="calories">
+            <h5>Calories</h5>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input class="form-check-input" name ="calories" type="checkbox" value="500">
+                500 cals
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input class="form-check-input" name ="calories" type="checkbox" value="1000">
+                1000 cals
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input class="form-check-input" name ="calories" type="checkbox" value="1500">
+                1500 cals
+              </label>
+            </div>
+          </div>
+          <div class="vegetarian">
+            <h5>Vegetarian</h5>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input class="form-check-input" name ="vegetarian" type="checkbox" value="true">
+                Vegetarian
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input class="form-check-input" name ="vegetarian" type="checkbox" value="false">
+                Non-vegetarian
+              </label>
+            </div>
           </div>
         </div><!--/span-->
       </div><!--/row-->
