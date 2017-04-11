@@ -75,9 +75,6 @@ var recipeDB = [
   }
 ]
 
-console.log(recipeDB);
-
-var userIngredients = ["egg", "butter","pork sausage","american cheese","english muffin"];
 
 // find recipes that user has ingredients for
 function matchedIngredients(recipeIngredients, userIngredients) {
@@ -99,6 +96,10 @@ function matchedIngredients(recipeIngredients, userIngredients) {
     return false;
   }
 }
+
+// function noMatchArray(array) {
+//
+// }
 
 // console.log(recipeDB[0].name + ": " +  findRecipes(recipeDB[0].ingredients, userIngredients));
 // console.log(recipeDB[1].name + ": " +  findRecipes(recipeDB[1].ingredients, userIngredients));
@@ -129,8 +130,6 @@ function formatForBackend(string) {
   return string.replace(/ /g,"_");
 }
 
-console.log("parseRecipes: " + parseRecipes(recipeDB));
-
 $(document).ready(function() {
   var myIngredients = parseRecipes(recipeDB);
   myIngredients.forEach(function(myIngredient)
@@ -148,17 +147,9 @@ $(document).ready(function() {
 
   var userInput = [];
   $(".my-ingredients input[name='checkbox']").click(function() {
-    var matchedRecipes = [];
     if (this.checked)
     {
       userInput.push($(this).val());
-      recipeDB.forEach(function(recipe) {
-        var matchedRecipe = matchedIngredients(recipe.ingredients, userInput)
-        if (matchedRecipe)
-        {
-          matchedRecipes.push(recipe)
-        }
-      })
     }
     else
     {
@@ -168,7 +159,15 @@ $(document).ready(function() {
         userInput.splice(index, 1);
       }
     }
-    console.log("matched recipes: " + matchedRecipes);
+    recipeDB.forEach(function(recipe) {
+      var matchedRecipes = [];
+      var matchedRecipe = matchedIngredients(recipe.ingredients, userInput)
+      if (matchedRecipe)
+      {
+        matchedRecipes.push(recipe)
+      }
+      console.log(matchedRecipes);
+    })
     console.log("userInput array: " + userInput);
   })
 });
