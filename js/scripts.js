@@ -4,10 +4,10 @@ var recipeDB = [
     "name" : "Sausage Breakfast Sandwich",
     "image" : "http://www.twopeasandtheirpod.com/wp-content/uploads/2013/12/Sausage-Egg-and-Cheese-Sandwich-with-Maple-Butter-3.jpg",
     "ingredients" : [
-      "pork sausage",
+      "pork_sausage",
       "egg",
-      "american cheese",
-      "english muffin",
+      "american_cheese",
+      "english_muffin",
       "butter"
     ],
     "cuisine" : "american",
@@ -37,13 +37,13 @@ var recipeDB = [
     "ingredients" : [
       "onion",
       "garlic",
-      "tomato sauce",
-      "heavy cream",
+      "tomato_sauce",
+      "heavy_cream",
       "butter",
-      "cayenne pepper",
-      "chicken chunks",
-      "tandoori masala",
-      "oil - vegetable",
+      "cayenne_pepper",
+      "chicken_chunks",
+      "tandoori_masala",
+      "oil_-_vegetable",
       "salt"
     ],
     "cuisine" : "indian",
@@ -80,7 +80,7 @@ console.log(recipeDB);
 var userIngredients = ["egg", "butter","pork sausage","american cheese","english muffin"];
 
 // find recipes that user has ingredients for
-function findRecipes(recipeIngredients, userIngredients) {
+function matchedIngredients(recipeIngredients, userIngredients) {
   var matchCount = 0;
   userIngredients.forEach(function(userIngredient) {
     recipeIngredients.forEach(function(recipeIngredient) {
@@ -90,7 +90,7 @@ function findRecipes(recipeIngredients, userIngredients) {
       }
     })
   })
-  console.log("match count:" +matchCount);
+  // console.log("match count:" +matchCount);
   if (matchCount === recipeIngredients.length) {
     return true;
   }
@@ -100,18 +100,17 @@ function findRecipes(recipeIngredients, userIngredients) {
   }
 }
 
-console.log(recipeDB[0].name + ": " +  findRecipes(recipeDB[0].ingredients, userIngredients));
-console.log(recipeDB[1].name + ": " +  findRecipes(recipeDB[1].ingredients, userIngredients));
+// console.log(recipeDB[0].name + ": " +  findRecipes(recipeDB[0].ingredients, userIngredients));
+// console.log(recipeDB[1].name + ": " +  findRecipes(recipeDB[1].ingredients, userIngredients));
 
 // gather all ingredients from recipeDB and display as list with no duplicates, sort
 function parseRecipes(recipeDB) {
   var possibleIngredients = [];
   recipeDB.forEach(function(recipe) {
     recipe.ingredients.forEach(function(ingredient) {
-      var upperCaseIngredient = firstLetterUpperCase(ingredient);
-      if (possibleIngredients.indexOf(upperCaseIngredient) === -1)
+      if (possibleIngredients.indexOf(ingredient) === -1)
       {
-        possibleIngredients.push(upperCaseIngredient);
+        possibleIngredients.push(ingredient);
       }
     })
   })
@@ -119,32 +118,57 @@ function parseRecipes(recipeDB) {
 }
 
 // caps first letter of string
-function firstLetterUpperCase(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
+function formatForFrontend(string) {
+  var formattedString = string.charAt(0).toUpperCase() + string.slice(1);
+  formattedString = formattedString.replace(/_/g," ");
+  return formattedString;
+}
+
+function formatForBackend(string) {
+  // change to lowercase here
+  return string.replace(/ /g,"_");
 }
 
 console.log("parseRecipes: " + parseRecipes(recipeDB));
 
 $(document).ready(function() {
-
   var myIngredients = parseRecipes(recipeDB);
-  console.log(myIngredients);
   myIngredients.forEach(function(myIngredient)
   {
-    console.log(myIngredient);
+    var frontendIngredient = formatForFrontend(myIngredient);
     $(".my-ingredients").append(
       '<div class="form-check">'+
         '<label class="form-check-label">'+
-          '<input class="form-check-input" type="checkbox" name="checkbox"> '+
-          myIngredient +
+          '<input class="form-check-input" type="checkbox" name="checkbox" value=' + myIngredient + '> '+
+          frontendIngredient +
         '</label>'+
       '</div>'
     )
   });
+
+  var userInput = [];
   $(".my-ingredients input[name='checkbox']").click(function() {
-    console.log($(this).val())
-    if (this.checked) {
-      $(this).parent().remove()
+    var matchedRecipes = [];
+    if (this.checked)
+    {
+      userInput.push($(this).val());
+      recipeDB.forEach(function(recipe) {
+        var matchedRecipe = matchedIngredients(recipe.ingredients, userInput)
+        if (matchedRecipe)
+        {
+          matchedRecipes.push(recipe)
+        }
+      })
     }
+    else
+    {
+      var index = userInput.indexOf(this);
+      if (index === -1)
+      {
+        userInput.splice(index, 1);
+      }
+    }
+    console.log("matched recipes: " + matchedRecipes);
+    console.log("userInput array: " + userInput);
   })
 });
