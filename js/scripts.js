@@ -10,7 +10,7 @@ var recipeDB = [
       "english muffin",
       "butter"
     ],
-    "cuisine" : "American",
+    "cuisine" : "american",
 
     "time" : 20,
     "calories" : 383,
@@ -46,7 +46,7 @@ var recipeDB = [
       "oil - vegetable",
       "salt"
     ],
-    "cuisine" : "Indian",
+    "cuisine" : "indian",
 
     "time" : 60,
     "calories" : 384,
@@ -79,11 +79,13 @@ console.log(recipeDB);
 
 var userIngredients = ["egg", "butter","pork sausage","american cheese","english muffin"];
 
+// find recipes that user has ingredients for
 function findRecipes(recipeIngredients, userIngredients) {
   var matchCount = 0;
   userIngredients.forEach(function(userIngredient) {
     recipeIngredients.forEach(function(recipeIngredient) {
-      if (userIngredient === recipeIngredient) {
+      // if (userIngredient === recipeIngredient) {
+        if (userIngredient.includes(recipeIngredient)) {
         matchCount++;
       }
     })
@@ -101,21 +103,48 @@ function findRecipes(recipeIngredients, userIngredients) {
 console.log(recipeDB[0].name + ": " +  findRecipes(recipeDB[0].ingredients, userIngredients));
 console.log(recipeDB[1].name + ": " +  findRecipes(recipeDB[1].ingredients, userIngredients));
 
+// gather all ingredients from recipeDB and display as list with no duplicates, sort
 function parseRecipes(recipeDB) {
   var possibleIngredients = [];
   recipeDB.forEach(function(recipe) {
     recipe.ingredients.forEach(function(ingredient) {
-      if (possibleIngredients.indexOf(ingredient) === -1)
+      var upperCaseIngredient = firstLetterUpperCase(ingredient);
+      if (possibleIngredients.indexOf(upperCaseIngredient) === -1)
       {
-        possibleIngredients.push(ingredient);
+        possibleIngredients.push(upperCaseIngredient);
       }
     })
   })
-  return possibleIngredients;
+  return possibleIngredients.sort();
+}
+
+// caps first letter of string
+function firstLetterUpperCase(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 console.log("parseRecipes: " + parseRecipes(recipeDB));
 
 $(document).ready(function() {
 
+  var myIngredients = parseRecipes(recipeDB);
+  console.log(myIngredients);
+  myIngredients.forEach(function(myIngredient)
+  {
+    console.log(myIngredient);
+    $(".my-ingredients").append(
+      '<div class="form-check">'+
+        '<label class="form-check-label">'+
+          '<input class="form-check-input" type="checkbox" name="checkbox"> '+
+          myIngredient +
+        '</label>'+
+      '</div>'
+    )
+  });
+  $(".my-ingredients input[name='checkbox']").click(function() {
+    console.log($(this).val())
+    if (this.checked) {
+      $(this).parent().remove()
+    }
+  })
 });
