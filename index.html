@@ -86,83 +86,84 @@
           </div><!--/row-->
         </div><!--/span-->
         <div class="col-6 col-md-3 sidebar-offcanvas" id="sidebar">
-          <div class="cuisine">
-            <h5>Cuisine</h5>
-            <div class="form-check">
-              <label class="form-check-label">
-                <input class="form-check-input" name ="cuisine" type="checkbox" value="italian">
-                Italian
-              </label>
+          <form class="side-form">
+            <div class="cuisine">
+              <h5>Cuisine</h5>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input" name ="cuisine" type="checkbox" value="italian">
+                  Italian
+                </label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input" name ="cuisine" type="checkbox" value="indian">
+                  Indian
+                </label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input" name ="cuisine" type="checkbox" value="thai">
+                  Thai
+                </label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input" name ="cuisine" type="checkbox" value="mexican">
+                  Mexican
+                </label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input" name ="cuisine" type="checkbox" value="american">
+                  American
+                </label>
+              </div>
             </div>
-            <div class="form-check">
-              <label class="form-check-label">
-                <input class="form-check-input" name ="cuisine" type="checkbox" value="indian">
-                Indian
-              </label>
+            <div class="cooking-time">
+              <h5>Time</h5>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input" name ="time" type="checkbox" value="under-20">
+                  Quick (20 mins)
+                </label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input" name ="time" type="checkbox" value="standard">
+                  Standard (20 - 60 mins)
+                </label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input" name ="time" type="checkbox" value="slow">
+                  Slow (60+ mins)
+                </label>
+              </div>
             </div>
-            <div class="form-check">
-              <label class="form-check-label">
-                <input class="form-check-input" name ="cuisine" type="checkbox" value="thai">
-                Thai
-              </label>
-            </div>
-            <div class="form-check">
-              <label class="form-check-label">
-                <input class="form-check-input" name ="cuisine" type="checkbox" value="mexican">
-                Mexican
-              </label>
-            </div>
-            <div class="form-check">
-              <label class="form-check-label">
-                <input class="form-check-input" name ="cuisine" type="checkbox" value="american">
-                American
-              </label>
-            </div>
-          </div>
-          <div class="cooking-time">
-            <h5>Time</h5>
-            <div class="form-check">
-              <label class="form-check-label">
-                <input class="form-check-input" name ="time" type="checkbox" value="under-20">
-                Quick (20 mins)
-              </label>
-            </div>
-            <div class="form-check">
-              <label class="form-check-label">
-                <input class="form-check-input" name ="time" type="checkbox" value="standard">
-                Standard (20 - 60 mins)
-              </label>
-            </div>
-            <div class="form-check">
-              <label class="form-check-label">
-                <input class="form-check-input" name ="time" type="checkbox" value="slow">
-                Slow (60+ mins)
-              </label>
-            </div>
-          </div>
 
-          <div class="calories">
-            <h5>Calories</h5>
-            <div class="form-check">
-              <label class="form-check-label">
-                <input class="form-check-input" name ="calories" type="checkbox" value="500">
-                500 cals
-              </label>
+            <div class="calories">
+              <h5>Calories</h5>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input" name ="calories" type="checkbox" value="500">
+                  500 cals
+                </label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input" name ="calories" type="checkbox" value="1000">
+                  1000 cals
+                </label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input" name ="calories" type="checkbox" value="1500">
+                  1500 cals
+                </label>
+              </div>
             </div>
-            <div class="form-check">
-              <label class="form-check-label">
-                <input class="form-check-input" name ="calories" type="checkbox" value="1000">
-                1000 cals
-              </label>
-            </div>
-            <div class="form-check">
-              <label class="form-check-label">
-                <input class="form-check-input" name ="calories" type="checkbox" value="1500">
-                1500 cals
-              </label>
-            </div>
-          </div>
-          <div class="vegetarian">
+            <div class="vegetarian">
             <h5>Vegetarian</h5>
             <div class="form-check">
               <label class="form-check-label">
@@ -177,6 +178,8 @@
               </label>
             </div>
           </div>
+          <button type="submit" class="btn btn-outline-secondary mt-3">Submit</button>
+          </form>
         </div><!--/span-->
       </div><!--/row-->
       <hr>
