@@ -1,7 +1,7 @@
 var recipeDB = [
   {
     "id" : 1,
-    "name" : "Sausage Breakfast Sandwich",
+    "name" : "sausage_breakfast_sandwich",
     "image" : "http://www.twopeasandtheirpod.com/wp-content/uploads/2013/12/Sausage-Egg-and-Cheese-Sandwich-with-Maple-Butter-3.jpg",
     "ingredients" : [
       "pork_sausage",
@@ -11,7 +11,6 @@ var recipeDB = [
       "butter"
     ],
     "cuisine" : "american",
-
     "time" : 20,
     "calories" : 383,
     "vegetarian" : false,
@@ -32,7 +31,7 @@ var recipeDB = [
   },
   {
     "id": 2,
-    "name" : "Butter Chicken",
+    "name" : "butter_chicken",
     "image" : "https://en.wikipedia.org/wiki/Butter_chicken#/media/File:Chicken_makhani.jpg",
     "ingredients" : [
       "onion",
@@ -41,13 +40,12 @@ var recipeDB = [
       "heavy_cream",
       "butter",
       "cayenne_pepper",
-      "chicken_chunks",
+      "chicken",
       "tandoori_masala",
       "oil_-_vegetable",
       "salt"
     ],
     "cuisine" : "indian",
-
     "time" : 60,
     "calories" : 384,
     "vegetarian" : false,
@@ -75,7 +73,6 @@ var recipeDB = [
   }
 ]
 
-
 // find recipes that user has ingredients for
 function matchedIngredients(recipeIngredients, userIngredients) {
   var matchCount = 0;
@@ -101,21 +98,18 @@ function matchedIngredients(recipeIngredients, userIngredients) {
 //
 // }
 
-// console.log(recipeDB[0].name + ": " +  findRecipes(recipeDB[0].ingredients, userIngredients));
-// console.log(recipeDB[1].name + ": " +  findRecipes(recipeDB[1].ingredients, userIngredients));
-
 // gather all ingredients from recipeDB and display as list with no duplicates, sort
 function parseRecipes(recipeDB) {
-  var possibleIngredients = [];
+  var recipeIngredients = [];
   recipeDB.forEach(function(recipe) {
     recipe.ingredients.forEach(function(ingredient) {
-      if (possibleIngredients.indexOf(ingredient) === -1)
+      if (recipeIngredients.indexOf(ingredient) === -1)
       {
-        possibleIngredients.push(ingredient);
+        recipeIngredients.push(ingredient);
       }
     })
   })
-  return possibleIngredients.sort();
+  return recipeIngredients.sort();
 }
 
 // caps first letter of string
@@ -125,17 +119,17 @@ function formatForFrontend(string) {
   return formattedString;
 }
 
+// replaces spaces in string to underscores and change to lowercase
 function formatForBackend(string) {
-  // change to lowercase here
-  return string.replace(/ /g,"_");
+  return string.replace(/ /g,"_").toLowerCase();
 }
 
 $(document).ready(function() {
-  var myIngredients = parseRecipes(recipeDB);
-  myIngredients.forEach(function(myIngredient)
+  var recipeIngredients = parseRecipes(recipeDB);
+  recipeIngredients.forEach(function(myIngredient)
   {
     var frontendIngredient = formatForFrontend(myIngredient);
-    $(".my-ingredients").append(
+    $("#my-ingredients").append(
       '<div class="form-check">'+
         '<label class="form-check-label">'+
           '<input class="form-check-input" type="checkbox" name="checkbox" value=' + myIngredient + '> '+
@@ -143,31 +137,42 @@ $(document).ready(function() {
         '</label>'+
       '</div>'
     )
-  });
+  })
 
-  var userInput = [];
-  $(".my-ingredients input[name='checkbox']").click(function() {
+  var checkedIngredient = [];
+  $("#my-ingredients input[name='checkbox']").click(function() {
     if (this.checked)
     {
-      userInput.push($(this).val());
+      checkedIngredient.push($(this).val());
     }
     else
     {
-      var index = userInput.indexOf(this);
+      var index = checkedIngredient.indexOf(this);
       if (index === -1)
       {
-        userInput.splice(index, 1);
+        checkedIngredient.splice(index, 1);
       }
     }
     recipeDB.forEach(function(recipe) {
       var matchedRecipes = [];
-      var matchedRecipe = matchedIngredients(recipe.ingredients, userInput)
+      var matchedRecipe = matchedIngredients(recipe.ingredients, checkedIngredient)
+      // $("#matched-recipes").empty();
       if (matchedRecipe)
       {
         matchedRecipes.push(recipe)
+        $("#matched-recipes").append(
+          '<div class="col-6 col-lg-4">'+
+            '<div class="card">'+
+              '<a href='+matchedRecipes.name+'-ID'+matchedRecipes.id+'>'+
+                '<img class="card-img-top img-fluid" src='+matchedRecipes.image+'>'+
+                '<h6 class="card-title text-center mt-2">'+matchedRecipes.name+'</h6>'+
+              '</a>'+
+            '</div>'+
+          '</div>'
+        )
       }
       console.log(matchedRecipes);
     })
-    console.log("userInput array: " + userInput);
+    console.log("checkedIngredient array: " + checkedIngredient);
   })
 });
