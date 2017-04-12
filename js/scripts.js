@@ -112,12 +112,14 @@ function parseRecipes(recipeDB) {
   return recipeIngredients.sort();
 }
 
-// caps first letter of string
+// remove underscores and caps first letter of each word in string
 function formatForFrontend(string) {
-  // add logic to caps first letter each word
-  var formattedString = string.charAt(0).toUpperCase() + string.slice(1);
-  formattedString = formattedString.replace(/_/g," ");
-  return formattedString;
+  var formattedArray = [];
+  var replaceUnderScore = string.replace(/_/g," ").split(" ");
+  replaceUnderScore.forEach(function(word) {
+    formattedArray.push(word.charAt(0).toUpperCase() + word.slice(1));
+  })
+  return formattedArray.join(" ");
 }
 
 // replaces spaces in string to underscores and change to lowercase
@@ -150,31 +152,72 @@ $(document).ready(function() {
     }
     else
     {
-      var index = checkedIngredient.indexOf($(this).val());
-      if (index > -1)
+      var ingredientIndex = checkedIngredient.indexOf($(this).val());
+      if (ingredientIndex > -1)
       {
-        checkedIngredient.splice(index, 1);
+        checkedIngredient.splice(ingredientIndex, 1);
       }
     }
     recipeDB.forEach(function(recipe) {
       var matchedRecipes = [];
       var matchedRecipe = matchedIngredients(recipe.ingredients, checkedIngredient)
-      console.log(matchedRecipe);
       if (matchedRecipe)
       {
+        var nameFormatted = formatForFrontend(recipe.name);
+        var recipeID = recipe.name+'_id'+recipe.id;
         matchedRecipes.push(recipe)
         $("#matched-recipes").append(
           '<div class="col-6 col-lg-4">'+
             '<div class="card">'+
-              '<a href='+recipe.name+'-ID'+recipe.id+'>'+
+              '<div id='+recipeID+'>'+
                 '<img class="card-img-top img-fluid" src='+recipe.image+'>'+
-                '<h6 class="card-title text-center mt-2">'+recipe.name+'</h6>'+
-              '</a>'+
+                '<h6 class="card-title text-center mt-2">'+nameFormatted+'</h6>'+
+              '</div>'+
             '</div>'+
           '</div>'
         )
       }
-      console.log(matchedRecipes);
+      $("#"+recipeID).click(function() {
+       $("#recipe-full").append(
+         '<div class="recipe-head text-center">'+
+          '<h1>Nachos</h1>'+
+          '<p class="lead">'+
+              'by <a href="#">Start Bootstrap</a>'+
+          '</p>'+
+          '<hr>'+
+          '<div class="row">'+
+            '<div class="col-sm-3"><p>Cuisine: Mexican</p></div>'+
+            '<div class="col-sm-3"><p>Meal: Breakfast</p></div>'+
+            '<div class="col-sm-3"><p>Time: 20 mins</p></div>'+
+            '<div class="col-sm-3"><p>Calories: 500</p></div>'+
+          '</div>'+
+          '<hr>'+
+          '<img class="img-fluid" src="https://qph.ec.quoracdn.net/main-qimg-ad8609c29c570c001209e30e628f641e-c" alt="">'+
+          '<hr>'+
+        '</div>'+
+
+        '<div class="row mt-4" >'+
+          '<div class="col-lg-6 pl-5">'+
+            '<div class="recipe-ingredients">'+
+              '<h4>Ingredients: </h4>'+
+              '<ul>'+
+                '<li>8 oz pork sausage</li>'+
+                '<li>4 large eggs</li>'+
+              '</ul>'+
+            '</div>'+
+          '</div>'+
+          '<div class="col-lg-6">'+
+            '<div class="recipe-directions">'+
+              '<h4>Directions: </h4>'+
+              '<ol>'+
+                '<li>Form sausage into 4 patties. Cook in a large, non-stick sprayed skillet over medium-high heat for 3-4 minutes a side, or until golden brown and crisp. Place sausage patties on a paper towel-lined plate to drain the grease.</li>'+
+                '<li>Drain fat from skillet then return to stove and turn heat down to medium. Whisk eggs, salt, and pepper in a bowl then pour into the skillet. Cook until top is nearly set but still glossy, then carefully fold eggs over in half. Remove from heat to finish cooking.</li>'+
+              '</ol>'+
+            '</div>'+
+          '</div>'+
+        '</div>'
+        );
+      })
     })
     console.log("checkedIngredient array: " + checkedIngredient);
   })
