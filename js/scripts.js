@@ -17,16 +17,18 @@ var recipeDB = [
     "breakfast" : true,
     "lunch": false,
     "dinner" : false,
-    "directions" : [
-      "INGREDIENTS: 8 oz pork sausage",
+    "ingredientsList" : [
+      "8 oz pork sausage",
       "4 large eggs",
       "4 slices American cheese",
       "4 English muffins, halved",
-      "4 tablespoons salted butter, softened",
-      "DIRECTIONS: 1. Form sausage into 4 patties. Cook in a large, non-stick sprayed skillet over medium-high heat for 3-4 minutes a side, or until golden brown and crisp. Place sausage patties on a paper towel-lined plate to drain the grease.",
-      "2. Drain fat from skillet then return to stove and turn heat down to medium. Whisk eggs, salt, and pepper in a bowl then pour into the skillet. Cook until top is nearly set but still glossy, then carefully fold eggs over in half. Remove from heat to finish cooking.",
-      "3. In a small bowl, whisk butter until creamy and smooth. Toast the English Muffins.",
-      "4. To assemble: Spread 1 tablespoon of maple butter on English Muffin, both halves. Place 1 egg on the bottom of a English muffin then top with cooked sausage patty and slice of cheese. Microwave for 20-30 seconds to melt cheese then cap with English muffin top. Continue making other sandwiches. Serve immediately."
+      "4 tablespoons salted butter, softened"
+    ],
+    "directionsList" : [
+      "Form sausage into 4 patties. Cook in a large, non-stick sprayed skillet over medium-high heat for 3-4 minutes a side, or until golden brown and crisp. Place sausage patties on a paper towel-lined plate to drain the grease.",
+      "Drain fat from skillet then return to stove and turn heat down to medium. Whisk eggs, salt, and pepper in a bowl then pour into the skillet. Cook until top is nearly set but still glossy, then carefully fold eggs over in half. Remove from heat to finish cooking.",
+      "In a small bowl, whisk butter until creamy and smooth. Toast the English Muffins.",
+      "To assemble: Spread 1 tablespoon of maple butter on English Muffin, both halves. Place 1 egg on the bottom of a English muffin then top with cooked sausage patty and slice of cheese. Microwave for 20-30 seconds to melt cheese then cap with English muffin top. Continue making other sandwiches. Serve immediately."
     ]
   },
   {
@@ -172,6 +174,24 @@ function formatForBackend(string) {
   return string.replace(/ /g,"_").toLowerCase();
 }
 
+// create formatted string on parsed recipe meal time
+function mealString(breakfast, lunch, dinner) {
+  var meals = "";
+  if (breakfast)
+  {
+    meals += "Breakfast ";
+  }
+  if (lunch)
+  {
+    meals += "Lunch ";
+  }
+  if (dinner)
+  {
+    meals += "Dinner ";
+  }
+  return meals;
+}
+
 $(document).ready(function() {
   var recipeIngredients = parseRecipes(recipeDB);
   recipeIngredients.forEach(function(myIngredient)
@@ -222,9 +242,11 @@ $(document).ready(function() {
           '</div>'
         )
       }
+
       $("#"+recipeID).click(function() {
        $("#main-content").hide();
-       recipe.directions
+       var cuisineFormatted = formatForFrontend(recipe.cuisine);
+       var mealsFormatted = mealString(recipe.breakfast, recipe.lunch, recipe.dinner);
        $("#recipe-full").append(
          '<div class="recipe-head text-center">'+
           '<h1>'+nameFormatted+'</h1>'+
@@ -232,10 +254,10 @@ $(document).ready(function() {
           '</p>'+
           '<hr>'+
           '<div class="row">'+
-            '<div class="col-sm-3"><p>Cuisine: '+ recipe.cuisine +'</p></div>'+
-            '<div class="col-sm-3"><p>Meal: '+ recipe.breakfast +'</p></div>'+
-            '<div class="col-sm-3"><p>Time: '+ recipe.time+' minutes</p></div>'+
-            '<div class="col-sm-3"><p>Calories: '+ recipe.calories+'</p></div>'+
+            '<div class="col-sm-3"><p>Cuisine: '+cuisineFormatted+'</p></div>'+
+            '<div class="col-sm-3"><p>Meal: '+mealsFormatted+'</p></div>'+
+            '<div class="col-sm-3"><p>Time: '+recipe.time+' minutes</p></div>'+
+            '<div class="col-sm-3"><p>Calories: '+recipe.calories+'</p></div>'+
           '</div>'+
           '<hr>'+
           '<img class="img-fluid" src='+recipe.image+' alt="">'+
@@ -245,30 +267,29 @@ $(document).ready(function() {
           '<div class="col-lg-6 pl-5">'+
             '<div class="recipe-ingredients">'+
               '<h4>Ingredients: </h4>'+
-              '<ul class='+recipeID+'>'+
-                '<li>8 oz pork sausage</li>'+
-                '<li>4 large eggs</li>'+
+              '<ul id='+recipeID+'_ingredients>'+
+
               '</ul>'+
             '</div>'+
           '</div>'+
           '<div class="col-lg-6">'+
             '<div class="recipe-directions">'+
               '<h4>Directions: </h4>'+
-              '<ol>'+
-                '<li>Form sausage into 4 patties. Cook in a large, non-stick sprayed skillet over medium-high heat for 3-4 minutes a side, or until golden brown and crisp. Place sausage patties on a paper towel-lined plate to drain the grease.</li>'+
-                '<li>Drain fat from skillet then return to stove and turn heat down to medium. Whisk eggs, salt, and pepper in a bowl then pour into the skillet. Cook until top is nearly set but still glossy, then carefully fold eggs over in half. Remove from heat to finish cooking.</li>'+
+              '<ol id='+recipeID+'_directions>'+
+
               '</ol>'+
             '</div>'+
           '</div>'+
         '</div>'
         );
-        recipe.directions.forEach(function(line) {
-          $("."+recipeID).append(
-            '<li>'+line+'</li>'
-          )
-        })
-      })
-    })
+        recipe.ingredientsList.forEach(function(line) {
+          $('#'+recipeID+'_ingredients').append('<li>'+line+'</li>');
+        });
+        recipe.directionsList.forEach(function(line) {
+          $('#'+recipeID+'_directions').append('<li>'+line+'</li>');
+        });
+      });
+    });
     console.log("checkedIngredient array: " + checkedIngredient);
-  })
+  });
 });
