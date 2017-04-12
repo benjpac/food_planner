@@ -9,6 +9,16 @@ body {
 }
 
 
+.navbar-nav {
+  margin-left: 2rem;
+}
+
+.navbar-nav li{
+  margin-left: 1rem;
+  margin-right: 2rem;
+}
+
+
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
 

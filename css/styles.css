@@ -40,6 +40,17 @@ body {
   font-size: 35px;
 }
 
+.navbar-nav {
+  margin-left: 2rem;
+}
+
+.navbar-nav li{
+  margin-left: 1rem;
+  margin-right: 2rem;
+}
+
+
+
 
 /*Main Content*/
 
