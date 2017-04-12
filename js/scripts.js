@@ -32,7 +32,7 @@ var recipeDB = [
   {
     "id": 2,
     "name" : "butter_chicken",
-    "image" : "https://en.wikipedia.org/wiki/Butter_chicken#/media/File:Chicken_makhani.jpg",
+    "image" : "http://noshingwiththenolands.com/wp-content/uploads/2016/03/Slow-Cooker-Butter-Chicken-square-Custom.jpg",
     "ingredients" : [
       "onion",
       "garlic",
@@ -133,7 +133,7 @@ $(document).ready(function() {
       '<div class="form-check">'+
         '<label class="form-check-label">'+
           '<input class="form-check-input" type="checkbox" name="checkbox" value=' + myIngredient + '> '+
-          frontendIngredient +
+          frontendIngredient+
         '</label>'+
       '</div>'
     )
@@ -141,6 +141,8 @@ $(document).ready(function() {
 
   var checkedIngredient = [];
   $("#my-ingredients input[name='checkbox']").click(function() {
+    debugger;
+    $("#matched-recipes").empty();
     if (this.checked)
     {
       checkedIngredient.push($(this).val());
@@ -156,16 +158,15 @@ $(document).ready(function() {
     recipeDB.forEach(function(recipe) {
       var matchedRecipes = [];
       var matchedRecipe = matchedIngredients(recipe.ingredients, checkedIngredient)
-      // $("#matched-recipes").empty();
       if (matchedRecipe)
       {
         matchedRecipes.push(recipe)
         $("#matched-recipes").append(
           '<div class="col-6 col-lg-4">'+
             '<div class="card">'+
-              '<a href='+matchedRecipes.name+'-ID'+matchedRecipes.id+'>'+
-                '<img class="card-img-top img-fluid" src='+matchedRecipes.image+'>'+
-                '<h6 class="card-title text-center mt-2">'+matchedRecipes.name+'</h6>'+
+              '<a href='+recipe.name+'-ID'+recipe.id+'>'+
+                '<img class="card-img-top img-fluid" src='+recipe.image+'>'+
+                '<h6 class="card-title text-center mt-2">'+recipe.name+'</h6>'+
               '</a>'+
             '</div>'+
           '</div>'
