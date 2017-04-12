@@ -1,14 +1,51 @@
-/*
- * Style tweaks
- * --------------------------------------------------
- */
+
 html,
 body {
   overflow-x: hidden; /* Prevent scroll on narrow devices */
+  height: 100%;
 }
+
 body {
-  padding-top: 70px;
+  margin-top: 50px;
+  -webkit-font-smoothing
 }
+
+/*cover*/
+
+#cover {
+  background: url('../img/cover1.jpg') center center no-repeat;
+  background-size: cover;
+  min-width: 100%;
+  height: 40rem;
+  display: flex;
+  align-items: center;
+}
+
+#cover-caption {
+  font-size: 1.4rem;
+  font-weight: 200;
+  max-width: 60rem;
+  margin: 0 auto;
+  text-align: center;
+  color: white;
+}
+
+#cover-caption h1{
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+#cover-caption p{
+  font-size: 35px;
+}
+
+
+/*Main Content*/
+
+#main-content {
+  padding: 2rem 0;
+}
+
 
 .card {
   margin-bottom: 20px;
