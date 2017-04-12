@@ -75,7 +75,7 @@ var recipeDB = [
   {
     "id": 3,
     "name" : "classic_italian_lasagna",
-    "image" : "http://www.forgottothink.com/wp-content/uploads/2016/06/italian-dishes-6.jpg",
+    "image" : "img/lasagna.jpg",
     "ingredients" : [
       "beef",
       "onion",
@@ -192,7 +192,7 @@ var recipeDB = [
   {
     "id" : 6,
     "name" : "sausage_breakfast_sandwich",
-    "image" : "http://www.twopeasandtheirpod.com/wp-content/uploads/2013/12/Sausage-Egg-and-Cheese-Sandwich-with-Maple-Butter-3.jpg",
+    "image" : "img/breakfast_sandwich.jpg",
     "ingredients" : [
       "pork_sausage",
       "egg",
@@ -224,7 +224,7 @@ var recipeDB = [
   {
     "id": 7,
     "name" : "butter_chicken",
-    "image" : "http://noshingwiththenolands.com/wp-content/uploads/2016/03/Slow-Cooker-Butter-Chicken-square-Custom.jpg",
+    "image" : "img/butter_chicken.jpg",
     "ingredients" : [
       "onion",
       "garlic",
@@ -273,7 +273,7 @@ var recipeDB = [
       "tortilla_chips",
       "pulled_chicken_breast",
       "barbecue_sauce",
-      "cheese",
+      "cheddar_cheese",
       "roasted_corn",
       "red_onion",
       "ranch_dressing",
