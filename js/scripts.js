@@ -195,12 +195,11 @@ $(document).ready(function() {
           '<img class="img-fluid" src="https://qph.ec.quoracdn.net/main-qimg-ad8609c29c570c001209e30e628f641e-c" alt="">'+
           '<hr>'+
         '</div>'+
-
         '<div class="row mt-4" >'+
           '<div class="col-lg-6 pl-5">'+
             '<div class="recipe-ingredients">'+
               '<h4>Ingredients: </h4>'+
-              '<ul>'+
+              '<ul class='+recipeID+'>'+
                 '<li>8 oz pork sausage</li>'+
                 '<li>4 large eggs</li>'+
               '</ul>'+
@@ -217,6 +216,11 @@ $(document).ready(function() {
           '</div>'+
         '</div>'
         );
+        recipe.directions.forEach(function(line) {
+          $("."+recipeID).append(
+            '<li>'+line+'</li>'
+          )
+        })
       })
     })
     console.log("checkedIngredient array: " + checkedIngredient);
