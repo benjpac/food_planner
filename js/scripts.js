@@ -223,21 +223,22 @@ $(document).ready(function() {
         )
       }
       $("#"+recipeID).click(function() {
+       $("#main-content").hide();
+       recipe.directions
        $("#recipe-full").append(
          '<div class="recipe-head text-center">'+
-          '<h1>Nachos</h1>'+
+          '<h1>'+nameFormatted+'</h1>'+
           '<p class="lead">'+
-              'by <a href="#">Start Bootstrap</a>'+
           '</p>'+
           '<hr>'+
           '<div class="row">'+
-            '<div class="col-sm-3"><p>Cuisine: Mexican</p></div>'+
-            '<div class="col-sm-3"><p>Meal: Breakfast</p></div>'+
-            '<div class="col-sm-3"><p>Time: 20 mins</p></div>'+
-            '<div class="col-sm-3"><p>Calories: 500</p></div>'+
+            '<div class="col-sm-3"><p>Cuisine: '+ recipe.cuisine +'</p></div>'+
+            '<div class="col-sm-3"><p>Meal: '+ recipe.breakfast +'</p></div>'+
+            '<div class="col-sm-3"><p>Time: '+ recipe.time+' minutes</p></div>'+
+            '<div class="col-sm-3"><p>Calories: '+ recipe.calories+'</p></div>'+
           '</div>'+
           '<hr>'+
-          '<img class="img-fluid" src="https://qph.ec.quoracdn.net/main-qimg-ad8609c29c570c001209e30e628f641e-c" alt="">'+
+          '<img class="img-fluid" src='+recipe.image+' alt="">'+
           '<hr>'+
         '</div>'+
 
