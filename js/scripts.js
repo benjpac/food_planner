@@ -114,6 +114,7 @@ function parseRecipes(recipeDB) {
 
 // caps first letter of string
 function formatForFrontend(string) {
+  // add logic to caps first letter each word
   var formattedString = string.charAt(0).toUpperCase() + string.slice(1);
   formattedString = formattedString.replace(/_/g," ");
   return formattedString;
@@ -141,7 +142,7 @@ $(document).ready(function() {
 
   var checkedIngredient = [];
   $("#my-ingredients input[name='checkbox']").click(function() {
-    debugger;
+    // add logic to pop() when removing and push() when adding
     $("#matched-recipes").empty();
     if (this.checked)
     {
@@ -149,8 +150,8 @@ $(document).ready(function() {
     }
     else
     {
-      var index = checkedIngredient.indexOf(this);
-      if (index === -1)
+      var index = checkedIngredient.indexOf($(this).val());
+      if (index > -1)
       {
         checkedIngredient.splice(index, 1);
       }
@@ -158,6 +159,7 @@ $(document).ready(function() {
     recipeDB.forEach(function(recipe) {
       var matchedRecipes = [];
       var matchedRecipe = matchedIngredients(recipe.ingredients, checkedIngredient)
+      console.log(matchedRecipe);
       if (matchedRecipe)
       {
         matchedRecipes.push(recipe)
