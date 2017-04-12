@@ -254,8 +254,8 @@ var recipeDB = [
       "cheese",
       "roasted_corn",
       "red_onion",
-      "dressing",
-      "Cilantro"
+      "ranch_dressing",
+      "cilantro"
 
     ],
     "cuisine" : "mexican",
