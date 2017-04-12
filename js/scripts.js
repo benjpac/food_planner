@@ -17,16 +17,18 @@ var recipeDB = [
     "breakfast" : true,
     "lunch": false,
     "dinner" : false,
-    "directions" : [
-      "INGREDIENTS: 8 oz pork sausage",
+    "ingredientsList" : [
+      "8 oz pork sausage",
       "4 large eggs",
       "4 slices American cheese",
       "4 English muffins, halved",
-      "4 tablespoons salted butter, softened",
-      "DIRECTIONS: 1. Form sausage into 4 patties. Cook in a large, non-stick sprayed skillet over medium-high heat for 3-4 minutes a side, or until golden brown and crisp. Place sausage patties on a paper towel-lined plate to drain the grease.",
-      "2. Drain fat from skillet then return to stove and turn heat down to medium. Whisk eggs, salt, and pepper in a bowl then pour into the skillet. Cook until top is nearly set but still glossy, then carefully fold eggs over in half. Remove from heat to finish cooking.",
-      "3. In a small bowl, whisk butter until creamy and smooth. Toast the English Muffins.",
-      "4. To assemble: Spread 1 tablespoon of maple butter on English Muffin, both halves. Place 1 egg on the bottom of a English muffin then top with cooked sausage patty and slice of cheese. Microwave for 20-30 seconds to melt cheese then cap with English muffin top. Continue making other sandwiches. Serve immediately."
+      "4 tablespoons salted butter, softened"
+    ],
+    "directionsList" : [
+      "Form sausage into 4 patties. Cook in a large, non-stick sprayed skillet over medium-high heat for 3-4 minutes a side, or until golden brown and crisp. Place sausage patties on a paper towel-lined plate to drain the grease.",
+      "Drain fat from skillet then return to stove and turn heat down to medium. Whisk eggs, salt, and pepper in a bowl then pour into the skillet. Cook until top is nearly set but still glossy, then carefully fold eggs over in half. Remove from heat to finish cooking.",
+      "In a small bowl, whisk butter until creamy and smooth. Toast the English Muffins.",
+      "To assemble: Spread 1 tablespoon of maple butter on English Muffin, both halves. Place 1 egg on the bottom of a English muffin then top with cooked sausage patty and slice of cheese. Microwave for 20-30 seconds to melt cheese then cap with English muffin top. Continue making other sandwiches. Serve immediately."
     ]
   },
   {
@@ -157,16 +159,37 @@ function parseRecipes(recipeDB) {
   return recipeIngredients.sort();
 }
 
-// caps first letter of string
+// remove underscores and caps first letter of each word in string
 function formatForFrontend(string) {
-  var formattedString = string.charAt(0).toUpperCase() + string.slice(1);
-  formattedString = formattedString.replace(/_/g," ");
-  return formattedString;
+  var formattedArray = [];
+  var replaceUnderScore = string.replace(/_/g," ").split(" ");
+  replaceUnderScore.forEach(function(word) {
+    formattedArray.push(word.charAt(0).toUpperCase() + word.slice(1));
+  })
+  return formattedArray.join(" ");
 }
 
 // replaces spaces in string to underscores and change to lowercase
 function formatForBackend(string) {
   return string.replace(/ /g,"_").toLowerCase();
+}
+
+// create formatted string on parsed recipe meal time
+function mealString(breakfast, lunch, dinner) {
+  var meals = "";
+  if (breakfast)
+  {
+    meals += "Breakfast ";
+  }
+  if (lunch)
+  {
+    meals += "Lunch ";
+  }
+  if (dinner)
+  {
+    meals += "Dinner ";
+  }
+  return meals;
 }
 
 $(document).ready(function() {
@@ -186,7 +209,7 @@ $(document).ready(function() {
 
   var checkedIngredient = [];
   $("#my-ingredients input[name='checkbox']").click(function() {
-    debugger;
+    // add logic to pop() when removing and push() when adding
     $("#matched-recipes").empty();
     if (this.checked)
     {
@@ -194,10 +217,10 @@ $(document).ready(function() {
     }
     else
     {
-      var index = checkedIngredient.indexOf(this);
-      if (index === -1)
+      var ingredientIndex = checkedIngredient.indexOf($(this).val());
+      if (ingredientIndex > -1)
       {
-        checkedIngredient.splice(index, 1);
+        checkedIngredient.splice(ingredientIndex, 1);
       }
     }
     recipeDB.forEach(function(recipe) {
@@ -205,20 +228,68 @@ $(document).ready(function() {
       var matchedRecipe = matchedIngredients(recipe.ingredients, checkedIngredient)
       if (matchedRecipe)
       {
+        var nameFormatted = formatForFrontend(recipe.name);
+        var recipeID = recipe.name+'_id'+recipe.id;
         matchedRecipes.push(recipe)
         $("#matched-recipes").append(
           '<div class="col-6 col-lg-4">'+
             '<div class="card">'+
-              '<a href='+recipe.name+'-ID'+recipe.id+'>'+
+              '<div id='+recipeID+'>'+
                 '<img class="card-img-top img-fluid" src='+recipe.image+'>'+
-                '<h6 class="card-title text-center mt-2">'+recipe.name+'</h6>'+
-              '</a>'+
+                '<h6 class="card-title text-center mt-2">'+nameFormatted+'</h6>'+
+              '</div>'+
             '</div>'+
           '</div>'
         )
       }
-      console.log(matchedRecipes);
-    })
+
+      $("#"+recipeID).click(function() {
+       $("#main-content").hide();
+       var cuisineFormatted = formatForFrontend(recipe.cuisine);
+       var mealsFormatted = mealString(recipe.breakfast, recipe.lunch, recipe.dinner);
+       $("#recipe-full").append(
+         '<div class="recipe-head text-center">'+
+          '<h1>'+nameFormatted+'</h1>'+
+          '<p class="lead">'+
+          '</p>'+
+          '<hr>'+
+          '<div class="row">'+
+            '<div class="col-sm-3"><p>Cuisine: '+cuisineFormatted+'</p></div>'+
+            '<div class="col-sm-3"><p>Meal: '+mealsFormatted+'</p></div>'+
+            '<div class="col-sm-3"><p>Time: '+recipe.time+' minutes</p></div>'+
+            '<div class="col-sm-3"><p>Calories: '+recipe.calories+'</p></div>'+
+          '</div>'+
+          '<hr>'+
+          '<img class="img-fluid" src='+recipe.image+' alt="">'+
+          '<hr>'+
+        '</div>'+
+        '<div class="row mt-4" >'+
+          '<div class="col-lg-6 pl-5">'+
+            '<div class="recipe-ingredients">'+
+              '<h4>Ingredients: </h4>'+
+              '<ul id='+recipeID+'_ingredients>'+
+
+              '</ul>'+
+            '</div>'+
+          '</div>'+
+          '<div class="col-lg-6">'+
+            '<div class="recipe-directions">'+
+              '<h4>Directions: </h4>'+
+              '<ol id='+recipeID+'_directions>'+
+
+              '</ol>'+
+            '</div>'+
+          '</div>'+
+        '</div>'
+        );
+        recipe.ingredientsList.forEach(function(line) {
+          $('#'+recipeID+'_ingredients').append('<li>'+line+'</li>');
+        });
+        recipe.directionsList.forEach(function(line) {
+          $('#'+recipeID+'_directions').append('<li>'+line+'</li>');
+        });
+      });
+    });
     console.log("checkedIngredient array: " + checkedIngredient);
-  })
+  });
 });
