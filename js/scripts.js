@@ -1,6 +1,196 @@
 var recipeDB = [
   {
     "id" : 1,
+    "name" : "quick_colcannon",
+    "image" : "http://www.traderjoes.com/images/recipes/353MainImage.jpg",
+    "ingredients" : [
+      "bacon",
+      "potatoe",
+      "mixed_greens",
+      "butter"
+    ],
+    "cuisine" : "american",
+    "time" : 15,
+    "calories" : 800,
+    "vegetarian" : false,
+    "breakfast" : false,
+    "lunch": true,
+    "dinner" : true,
+    "ingredientsList" : [
+      "6 slices Uncured Apple Smoked Bacon",
+      "1 bag Frozen Mashed Potatoes",
+      "1/3 cup Water, plus 2 tablespoons",
+      "1/2 bag Mixed Greens",
+      "Kerrygold Pure Irish Butter"
+    ],
+    "directionsList" : [
+      "In a large frying pan on medium heat, cook 6 slices of bacon. Set cooked bacon aside on a paper towel-lined plate. Discard all but 1 tablespoon of oil from the pan.",
+      "Add bag of frozen mashed potato medallions and 1/3 cup of water. Cook over moderate heat, stirring frequently.",
+      "After about 5 minutes, once potatoes begin to soften, add 1/2 bag mixed greens and 2 additional tablespoons of water. Stir then cover to trap steam.",
+      "Cook for another 2-3 minutes or so, stirring every so often, until greens soften a bit.",
+      "Chop cooled bacon into small pieces then add to pan of potatoes. Serve right away with a pat of butter on top."
+    ]
+  },
+  {
+    "id": 2,
+    "name" : "green_curry_chickpeas",
+    "image" : "http://www.traderjoes.com/images/recipes/411MainImage.jpg",
+    "ingredients" : [
+      "garbanzo_bean",
+      "green_curry_sauce",
+      "baby_spinach",
+      "red_cherry_tomatoe",
+      "quinoa",
+      "salt",
+      "pepper",
+      "tandoori_masala",
+      "olive_oil"
+    ],
+    "cuisine" : "indian",
+    "time" : 50,
+    "calories" : 1500,
+    "vegetarian" : true,
+    "breakfast" : false,
+    "lunch": true,
+    "dinner" : true,
+    "ingredientsList" : [
+      "2 cans Organic Garbanzo Beans",
+      "1 Jar Green Curry Sauce",
+      "1 bag Organic Baby Spinach",
+      "1 pkg Organic Red Cherry Tomatoes",
+      "1 cup Organic Quinoa",
+      "Sea Salt",
+      "Pepper",
+      "Olive oil"
+    ],
+      "directionsList" : [
+      "Preheat oven to 400°F",
+      "Toss the tomatoes lightly with olive oil, salt and pepper and spread them out into one layer on a sheet pan.",
+      "Roast for 15 to 20 minutes, until the tomatoes are soft. While tomatoes are roasting, prepare quinoa.",
+      "Warm the curry sauce in a large saucepan over medium heat.",
+      "Add the chickpeas and tomatoes and stir to combine. Reduce heat to low and simmer for 15 minutes.",
+      "Add the spinach and simmer until spinach is wilted and tender, about 10 minutes. Serve on top of cooked quinoa."
+    ]
+  },
+  {
+    "id": 3,
+    "name" : "classic_italian_lasagna",
+    "image" : "http://www.forgottothink.com/wp-content/uploads/2016/06/italian-dishes-6.jpg",
+    "ingredients" : [
+      "beef",
+      "onion",
+      "butter",
+      "carrot",
+      "flour",
+      "basil",
+      "lasagna_noodle",
+      "parmesan_cheese",
+      "milk",
+      "nutmeg",
+      "tomato_paste",
+      "olive_oil",
+      "celery"
+    ],
+    "cuisine" : "italian",
+    "time" : 30,
+    "calories" : 600,
+    "vegetarian" : false,
+    "breakfast" : false,
+    "lunch": true,
+    "dinner" : true,
+    "ingredientsList" : [
+      "14.1 oz (400 g) minced beef",
+      "1.4 oz (40 g) onion",
+      "3.5 oz (100 g) carrots",
+      "1.4 oz (40 g) celery ribs",
+      "1.4 oz (40 g) tomato paste",
+      "14.1 oz (400 ml) water",
+      "1.4 oz (40 g) flour",
+      "1.4 oz (40 g) butter",
+      "26.5 oz (750 ml) milk 3.2%",
+      "a pinch of nutmeg powder",
+      "4 twigs of fresh basil",
+      "2 pinches of salt",
+      "1 tablespoon of olive oil",
+      "2.8 oz (80 g) parmesan cheese",
+      "8 lasagna noodles"
+    ],
+    "directionsList" : [
+      "Preparation of the sauce — Bolognese. Mix tomato paste with some hot water. Dice onion, carrots, and celery. Lay out vegetables and minced beef in a stew pan, pour in the tomato sauce. Add salt and pepper, scald, cover, and simmer on medium heat for 30 minutes. Add finely chopped basil 2-3 minutes before the sauce is done.",
+      "Preparation of the sauce — Bechamel. Pour the milk into a saucepan and heat without bringing to boil. The milk should be hot. Melt the butter in a stewpan, add the flour, and fry for 2-3 minutes. Then, gradually pour in the hot milk, stirring to avoid lumps. Continue to stir and simmer, add salt and nutmeg. Once the sauce has thickened, it’s ready. Remove it from heat.",
+      "Laying out the lasagna. Grate cheese. Preheat oven to 428°F (220°C). Oil a casserole dish and pour in some Bechamel sauce to cover the bottom, then pour in some Bolognese sauce following the same principle.",
+      "Lay out 4 lasagna noodles with overlapping joints. Pour the sauces on top, and sprinkle with cheese. Repeat this process until ingredients are gone.",
+      "Put the dish in the preheated oven for 20 minutes. Turn off the oven, cover the dish with foil and leave in a hot oven for another 10 minutes. Enjoy!"
+    ]
+  },
+  {
+    "id": 4,
+    "name" : "sweet_balls_of_fire",
+    "image" : "http://www.traderjoes.com/images/recipes/472MainImage.jpg",
+    "ingredients" : [
+      "sugar",
+      "raspberry_preserves",
+      "sweet_chili_sauce",
+      "turkey_meatball",
+    ],
+    "cuisine" : "american",
+    "time" : 40,
+    "calories" : 1000,
+    "vegetarian" : false,
+    "breakfast" : false,
+    "lunch": true,
+    "dinner" : true,
+    "ingredientsList" : [
+      "1/2 cup Sugar",
+      "1/2 cup Raspberry Preserves",
+      "2 jars Sweet Chili Sauce",
+      "2 packages Turkey Meatballs"
+    ],
+    "directionsList" : [
+      "Preheat oven to 350°.",
+      "Prepare sauce: In a sauce pan over medium heat, add raspberry preserves and sweet chili sauce. Heat until sauce begins to bubble, about 8-10 minutes, stirring occasionally. Remove from heat.",
+      "Place meatballs in a 9x9 baking dish and cover with warm sauce mixture. Place dish in oven and heat for 40 minutes, or until meatballs are heated to 165⩝F and sauce is hot. Alternatively, use a slow cooker to heat meatballs and sauce, about 5-6 hours on low, or 2-4 hours on high until heated through."
+    ]
+  },
+  {
+    "id": 5,
+    "name" : "biscuits_and_gravy_casserole",
+    "image" : "http://www.traderjoes.com/images/recipes/465MainImage.jpg",
+    "ingredients" : [
+      "ground_pork",
+      "flour",
+      "milk",
+      "olive_oil",
+      "cheddar_cheese",
+      "pepper",
+      "egg",
+    ],
+    "cuisine" : "american",
+    "time" : 35,
+    "calories" : 1500,
+    "vegetarian" : false,
+    "breakfast" : true,
+    "lunch": false,
+    "dinner" : false,
+    "ingredientsList" : [
+      "1 package (1 pound) TJ's Ground Pork",
+      "1/3 cup All Purpose Flour",
+      "3 cups Whole Milk",
+      "1/2 teaspoon Salt",
+      "1/2 teaspoon Pepper",
+      "Extra Virgin Olive Oil Spray, to grease pan",
+      "6 TJ's Eggs",
+      "1 can TJ's Buttermilk Biscuits",
+      "1 cup TJ's Shredded Cheese Blend"
+    ],
+    "directionsList" : [
+      "In a large skillet over medium-high heat, brown the ground pork, breaking it up into pieces with a spoon as it cooks, about 8-10 minutes. When the pork has reached 145ºF and is no longer pink, reduce heat to medium. Sprinkle half of the flour over pork and stir to combine. Add remaining flour and stir to combine. Add one cup of milk to the pan and stir. Continue to add milk one cup at a time as gravy thickens. Cook for another 5-8 minutes to further thicken the gravy.",
+      "Preheat oven to 350ºF. Grease a 9x13 pan with olive oil spray and set aside. In a large bowl, add eggs and 21 Seasoning Salute and whisk to combine; set aside. Open the biscuits and tear each biscuit into four pieces. Line the bottom of the greased pan with half of the biscuit dough. Pour egg mixture on top of biscuit dough. Sprinkle cheese evenly atop egg mixture. Pour sausage gravy over egg mixture and top with remaining biscuit dough pieces.",
+      "Insert pan in oven and bake for 20 minutes. Cover pan with foil and bake for another 12-15 minutes. Remove from oven and allow to cool slightly before serving."
+    ]
+  },
+  {
+    "id" : 6,
     "name" : "sausage_breakfast_sandwich",
     "image" : "http://www.twopeasandtheirpod.com/wp-content/uploads/2013/12/Sausage-Egg-and-Cheese-Sandwich-with-Maple-Butter-3.jpg",
     "ingredients" : [
@@ -32,7 +222,7 @@ var recipeDB = [
     ]
   },
   {
-    "id": 2,
+    "id": 7,
     "name" : "butter_chicken",
     "image" : "http://noshingwiththenolands.com/wp-content/uploads/2016/03/Slow-Cooker-Butter-Chicken-square-Custom.jpg",
     "ingredients" : [
@@ -44,7 +234,7 @@ var recipeDB = [
       "cayenne_pepper",
       "chicken",
       "tandoori_masala",
-      "oil_-_vegetable",
+      "vegetable_oil",
       "salt"
     ],
     "cuisine" : "indian",
@@ -54,8 +244,8 @@ var recipeDB = [
     "breakfast" : true,
     "lunch": true,
     "dinner" : true,
-    "directions" : [
-      "INGREDIENTS: 1 cup butter, divided",
+    "ingredientsList" : [
+      "1 cup butter, divided",
       "1 onion, minced",
       "1 tablespoon minced garlic",
       "1 (15 ounce) can tomato sauce",
@@ -65,57 +255,53 @@ var recipeDB = [
       "1 teaspoon garam masala",
       "1 1/2 pounds skinless, boneless chicken breast, cut into bite-sized chunks",
       "2 tablespoons vegetable oil",
-      "2 tablespoons tandoori masala",
-      "DIRECTIONS: 1. Preparation of the sauce — Bolognese. Mix tomato paste with some hot water. Dice onion, carrots, and celery. Lay out vegetables and minced beef in a stew pan, pour in the tomato sauce. Add salt and pepper, scald, cover, and simmer on medium heat for 30 minutes. Add finely chopped basil 2-3 minutes before the sauce is done.",
-      "2. Preparation of the sauce — Bechamel. Pour the milk into a saucepan and heat without bringing to boil. The milk should be hot. Melt the butter in a stewpan, add the flour, and fry for 2-3 minutes. Then, gradually pour in the hot milk, stirring to avoid lumps. Continue to stir and simmer, add salt and nutmeg. Once the sauce has thickened, it’s ready. Remove it from heat.",
-      "3. Laying out the lasagna. Grate cheese. Preheat oven to 428°F (220°C). Oil a casserole dish and pour in some Bechamel sauce to cover the bottom, then pour in some Bolognese sauce following the same principle.",
-      "4. Lay out 4 lasagna noodles with overlapping joints. Pour the sauces on top, and sprinkle with cheese. Repeat this process until ingredients are gone.",
-      "5. Put the dish in the preheated oven for 20 minutes. Turn off the oven, cover the dish with foil and leave in a hot oven for another 10 minutes. Enjoy!"
+      "2 tablespoons tandoori masala"
+    ],
+    "directionsList" : [
+      "Preparation of the sauce — Bolognese. Mix tomato paste with some hot water. Dice onion, carrots, and celery. Lay out vegetables and minced beef in a stew pan, pour in the tomato sauce. Add salt and pepper, scald, cover, and simmer on medium heat for 30 minutes. Add finely chopped basil 2-3 minutes before the sauce is done.",
+      "Preparation of the sauce — Bechamel. Pour the milk into a saucepan and heat without bringing to boil. The milk should be hot. Melt the butter in a stewpan, add the flour, and fry for 2-3 minutes. Then, gradually pour in the hot milk, stirring to avoid lumps. Continue to stir and simmer, add salt and nutmeg. Once the sauce has thickened, it’s ready. Remove it from heat.",
+      "Laying out the lasagna. Grate cheese. Preheat oven to 428°F (220°C). Oil a casserole dish and pour in some Bechamel sauce to cover the bottom, then pour in some Bolognese sauce following the same principle.",
+      "Lay out 4 lasagna noodles with overlapping joints. Pour the sauces on top, and sprinkle with cheese. Repeat this process until ingredients are gone.",
+      "Put the dish in the preheated oven for 20 minutes. Turn off the oven, cover the dish with foil and leave in a hot oven for another 10 minutes. Enjoy!"
     ]
   },
   {
-    "id": 3,
-    "name" : "classic_italian_lasagna",
-    "image" : "http://www.forgottothink.com/wp-content/uploads/2016/06/italian-dishes-6.jpg",
+    "id" : 8,
+    "name" : "bbq_chicken_nachos",
+    "image" : "http://www.traderjoes.com/images/recipes/52MainImage.jpg",
     "ingredients" : [
-      "minced_beef",
-      "onion",
-      "butter",
-      "carrots",
-      "butter",
-      "wheat_flour",
-      "basil",
-      "lasagna_noodles",
-      "parmesan",
+      "tortilla_chips",
+      "pulled_chicken_breast",
+      "barbecue_sauce",
+      "cheese",
+      "roasted_corn",
+      "red_onion",
+      "ranch_dressing",
+      "cilantro"
+
     ],
-    "cuisine" : "italian",
-    "time" : 30,
-    "calories" : 600,
+    "cuisine" : "mexican",
+    "time" : 15,
+    "calories" : 1000,
     "vegetarian" : false,
     "breakfast" : false,
     "lunch": true,
     "dinner" : true,
-    "directions" : [
-      "INGREDIENTS: 14.1 oz (400 g) minced beef",
-      "1.4 oz (40 g) onion",
-      "3.5 oz (100 g) carrots",
-      "1.4 oz (40 g) celery ribs",
-      "1.4 oz (40 g) tomato paste",
-      "14.1 oz (400 ml) water",
-      "1.4 oz (40 g) wheat flour",
-      "1.4 oz (40 g) butter",
-      "26.5 oz (750 ml) milk 3.2%",
-      "a pinch of nutmeg powder",
-      "4 twigs of fresh basil",
-      "2 pinches of salt",
-      "1 tablespoon of olive oil",
-      "2.8 oz (80 g) parmesan",
-      "8 lasagna noodles",
-      "DIRECTIONS: 1. Preparation of the sauce — Bolognese. Mix tomato paste with some hot water. Dice onion, carrots, and celery. Lay out vegetables and minced beef in a stew pan, pour in the tomato sauce. Add salt and pepper, scald, cover, and simmer on medium heat for 30 minutes. Add finely chopped basil 2-3 minutes before the sauce is done.",
-      "2. Preparation of the sauce — Bechamel. Pour the milk into a saucepan and heat without bringing to boil. The milk should be hot. Melt the butter in a stewpan, add the flour, and fry for 2-3 minutes. Then, gradually pour in the hot milk, stirring to avoid lumps. Continue to stir and simmer, add salt and nutmeg. Once the sauce has thickened, it’s ready. Remove it from heat.",
-      "3. Laying out the lasagna. Grate cheese. Preheat oven to 428°F (220°C). Oil a casserole dish and pour in some Bechamel sauce to cover the bottom, then pour in some Bolognese sauce following the same principle.",
-      "4. Lay out 4 lasagna noodles with overlapping joints. Pour the sauces on top, and sprinkle with cheese. Repeat this process until ingredients are gone.",
-      "5. Put the dish in the preheated oven for 20 minutes. Turn off the oven, cover the dish with foil and leave in a hot oven for another 10 minutes. Enjoy!"
+    "ingredientsList" : [
+      "1/2 bag Salted Tortilla Chips",
+      "1 package Pulled Chicken Breast w/BBQ Sauce",
+      "3 Tbsp Bold & Smoky Kansas City Style Barbecue Sauce",
+      "1 package Shredded Pepper Jack Cheese Blend",
+      "1/2 bag Frozen Roasted Corn",
+      "1/2 cup Red Onion, diced",
+      "3 Tbsp Parmesan Ranch Dressing",
+      "3 Tbsp fresh Cilantro, chopped"
+    ],
+    "directionsList" : [
+      "Preheat oven to 350 degrees.",
+      "Spread an even layer of tortilla chips in a large oven-safe dish. In the following order: add chicken, BBQ sauce, cheese, roasted corn and onion.",
+      "Bake for 10 to 15 minutes or until cheese starts to bubble.",
+      "Remove from oven, drizzle with ranch dressing and garnish with fresh cilantro."
     ]
   }
 ]
@@ -125,8 +311,7 @@ function matchedIngredients(recipeIngredients, userIngredients) {
   var matchCount = 0;
   userIngredients.forEach(function(userIngredient) {
     recipeIngredients.forEach(function(recipeIngredient) {
-      // if (userIngredient === recipeIngredient) {
-        if (userIngredient.includes(recipeIngredient)) {
+      if (userIngredient === recipeIngredient) {
         matchCount++;
       }
     })
@@ -229,6 +414,8 @@ $(document).ready(function() {
       if (matchedRecipe)
       {
         var nameFormatted = formatForFrontend(recipe.name);
+        console.log(matchedRecipe)
+        console.log(matchedRecipes)
         var recipeID = recipe.name+'_id'+recipe.id;
         matchedRecipes.push(recipe)
         $("#matched-recipes").append(
