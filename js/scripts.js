@@ -277,7 +277,6 @@ var recipeDB = [
       "parmesan_cheese",
       "salt",
       "pepper"
-
     ],
     "cuisine" : "italian",
     "time" : 30,
@@ -305,7 +304,7 @@ var recipeDB = [
     ]
   }
   {
-    "id" : 8,
+    "id" : 9,
     "name" : "bbq_chicken_nachos",
     "image" : "http://www.traderjoes.com/images/recipes/172MainImage.jpg",
     "ingredients" : [
@@ -317,7 +316,6 @@ var recipeDB = [
       "red_onion",
       "ranch_dressing",
       "cilantro"
-
     ],
     "cuisine" : "mexican",
     "time" : 15,
