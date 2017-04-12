@@ -7,8 +7,9 @@ body {
 
 body {
   margin-top: 50px;
-  -webkit-font-smoothing
+
 }
+
 
 
 /*cover*/
@@ -90,9 +91,19 @@ body {
   margin: 1.5rem 0;
 }
 
-footer {
-  padding: 30px 0;
+
+footer{
+  height: 60px;
+  background-color: black;
+  color: white;
+  padding-top: 1rem;
+  width: 100%;
 }
+
+.footer-icons .fa{
+  margin-right: 0.8rem;
+}
+
 
 /*side bar*/
 #sidebar h5 {
