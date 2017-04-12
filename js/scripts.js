@@ -243,7 +243,45 @@ var recipeDB = [
       "Cook together for an additional 5 minutes."
     ]
   },
+  {
+    "id" : 10,
+    "name" : "bbq_chicken_nachos",
+    "image" : "http://www.traderjoes.com/images/recipes/52MainImage.jpg",
+    "ingredients" : [
+      "tortilla_chips",
+      "pulled_chicken_breast",
+      "barbecue_sauce",
+      "cheese",
+      "roasted_corn",
+      "red_onion",
+      "dressing",
+      "Cilantro"
 
+    ],
+    "cuisine" : "mexican",
+    "time" : 15,
+    "calories" : 1000,
+    "vegetarian" : false,
+    "breakfast" : false,
+    "lunch": true,
+    "dinner" : true,
+    "ingredientsList" : [
+      "1/2 bag Salted Tortilla Chips",
+      "1 package Pulled Chicken Breast w/BBQ Sauce",
+      "3 Tbsp Bold & Smoky Kansas City Style Barbecue Sauce",
+      "1 package Shredded Pepper Jack Cheese Blend",
+      "1/2 bag Frozen Roasted Corn",
+      "1/2 cup Red Onion, diced",
+      "3 Tbsp Parmesan Ranch Dressing",
+      "3 Tbsp fresh Cilantro, chopped"
+    ],
+    "directionsList" : [
+      "Preheat oven to 350 degrees.",
+      "Spread an even layer of tortilla chips in a large oven-safe dish. In the following order: add chicken, BBQ sauce, cheese, roasted corn and onion.",
+      "Bake for 10 to 15 minutes or until cheese starts to bubble.",
+      "Remove from oven, drizzle with ranch dressing and garnish with fresh cilantro."
+    ]
+  },
 
 ]
 
