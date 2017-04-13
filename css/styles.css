@@ -65,13 +65,18 @@ body {
   margin-bottom: 1.5rem;;
 }
 
-.card a:hover {
-  text-decoration: underline;;
+.card-title:hover {
+  text-decoration: underline;
+  cursor: pointer;
   color: blue;
 }
 
 
 /*Recipe Content*/
+
+.close-recipe:hover {
+  cursor: pointer;
+}
 
 .recipe-content {
   margin-top: 2rem;
