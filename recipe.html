@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Food Planner</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/styles.css" type="text/css">
+    <script type="text/javascript" src="js/jquery-3.2.1.js"></script>
+    <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/scripts.js"></script>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-toggleable-md fixed-top navbar-inverse bg-inverse">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="#">Simple FP</a>
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index2.html">Home <span class="sr-only"></span></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="index.html">Recipes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- cover -->
+
+    <section id="cover">
+      <div id="cover-caption">
+        <h1 class="display-3">Food Planner</h1>
+        <p class="lead display-5">The recipe for your life</p>
+      </div>
+    </section>
+
+    <!-- <div class="container">
+      <div class="jumbotron">
+        <h1>The Food Planner!</h1>
+        <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
+      </div>
+    </div> -->
+
+    <!-- ***** Main content *********-->
+
+    <div class="container" id="main-content">
+      <div class="row row-offcanvas row-offcanvas-right">
+        <!-- Recipe list -->
+        <div class="col-12 col-md-9">
+          <p class="float-right hidden-md-up">
+            <button type="button" class="btn btn-primary btn-sm" data-toggle="offcanvas">Toggle nav</button>
+          </p>
+          <div class="instructions">
+            <h3>Instructions...</h3>
+            <ol>
+              <li>Select the ingredients you have at home.</li>
+              <li>When the picture is displayed, click on it to have access to the recipe steps.</li>
+              <li>Chef Things Up, and enjoy it!</li>
+            </ol>
+          </div>
+          <div class="row" id="all-recipes">
+            <!-- <h3>Instructions</h3> -->
+          </div>
+          <div class="row" id="matched-recipes">
+
+          </div>
+          <hr>
+          <div class="row" id="partial-matched-recipes">
+            <h3>You can make these Recipes if you have few more ingredients</h3>
+
+          </div>
+        </div><!--/span-->
+        <!-- Sidebar list -->
+        <div class="col-6 col-md-3 sidebar-offcanvas" id="sidebar">
+          <form class="side-form">
+            <h5 class="mt-0">My Ingredients</h5>
+            <div class id="my-ingredients">
+
+            </div>
+            <div class="cuisine">
+              <h5>Cuisine</h5>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input" name ="cuisine" type="checkbox" value="italian">
+                  Italian
+                </label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input" name ="cuisine" type="checkbox" value="indian">
+                  Indian
+                </label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input" name ="cuisine" type="checkbox" value="thai">
+                  Thai
+                </label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input" name ="cuisine" type="checkbox" value="mexican">
+                  Mexican
+                </label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input" name ="cuisine" type="checkbox" value="american">
+                  American
+                </label>
+              </div>
+            </div>
+            <div class="cuisine">
+              <h5>Meal Schedule</h5>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input" name ="schedule" type="checkbox" value="breakfast">
+                  Breakfast
+                </label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input" name ="schedule" type="checkbox" value="lunch">
+                  Lunch
+                </label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input" name ="schedule" type="checkbox" value="dinner">
+                  Dinner
+                </label>
+              </div>
+            </div>
+            <div class="cooking-time">
+              <h5>Time</h5>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input" name ="time" type="checkbox" value="under-20">
+                  Quick (20 mins)
+                </label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input" name ="time" type="checkbox" value="standard">
+                  Standard (20 - 60 mins)
+                </label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input" name ="time" type="checkbox" value="slow">
+                  Slow (60+ mins)
+                </label>
+              </div>
+            </div>
+
+            <div class="calories">
+              <h5>Calories</h5>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input" name ="calories" type="checkbox" value="500">
+                  500 cals
+                </label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input" name ="calories" type="checkbox" value="1000">
+                  1000 cals
+                </label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input" name ="calories" type="checkbox" value="1500">
+                  1500 cals
+                </label>
+              </div>
+            </div>
+            <div class="vegetarian">
+              <h5>Diet</h5>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input" name ="vegetarian" type="checkbox" value="true">
+                  Vegetarian
+                </label>
+              </div>
+            </div>
+          </form>
+        </div><!--/span-->
+      </div><!--/row-->
+    </div><!--/.container-->
+    <!-- **** Recipe content ******* -->
+    <div class="container" id="recipe-full">
+
+
+      <!-- **** Recipe content ******* -->
+    <!-- <div class="container recipe-content"> -->
+      <!-- <div class="row">
+        <div class="col-sm-1 offset-sm-11">
+          <img class="cross" src="img/cross.png" alt="">
+        </div>
+      </div>
+      <div class="recipe-head text-center">
+        <h1>Nachos</h1>
+        <hr> -->
+        <!-- Recipe Info  -->
+        <!-- <div class="row">
+          <div class="col-sm-3"><p>Cuisine: Mexican</p></div>
+          <div class="col-sm-3"><p>Meal: Breakfast</p></div>
+          <div class="col-sm-3"><p>Time: 20 mins</p></div>
+          <div class="col-sm-3"><p>Calories: 500</p></div>
+        </div>
+        <hr> -->
+        <!-- Recipe Image -->
+        <!-- <img class="img-fluid" src="https://qph.ec.quoracdn.net/main-qimg-ad8609c29c570c001209e30e628f641e-c" alt="">
+        <hr>
+      </div>
+
+      <div class="row mt-4" > -->
+        <!-- Recipe Ingredients -->
+        <!-- <div class="col-lg-6 pl-5">
+          <div class="recipe-ingredients">
+            <h4>Ingredients: </h4>
+            <ul>
+              <li>8 oz pork sausage</li>
+              <li>4 large eggs</li>
+            </ul>
+          </div>
+        </div> -->
+        <!-- Recipe Instructions -->
+        <!-- <div class="col-lg-6">
+          <div class="recipe-directions">
+            <h4>Directions: </h4>
+            <ol>
+              <li>Form sausage into 4 patties. Cook in a large, non-stick sprayed skillet over medium-high heat for 3-4 minutes a side, or until golden brown and crisp. Place sausage patties on a paper towel-lined plate to drain the grease.</li>
+              <li>Drain fat from skillet then return to stove and turn heat down to medium. Whisk eggs, salt, and pepper in a bowl then pour into the skillet. Cook until top is nearly set but still glossy, then carefully fold eggs over in half. Remove from heat to finish cooking.</li>
+            </ol>
+          </div>
+        </div>
+      </div> -->
+      <!-- FOOTER -->
+
+    </div>
+    <hr>
+    <footer>
+      <p class="text-center">&copy; Company 2017</p>
+    </footer>
+  </body>
+</html>
