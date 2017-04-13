@@ -530,6 +530,7 @@ $(document).ready(function() {
   })
 
   var checkedIngredients = [];
+  var partialMatches = [];
   $("#my-ingredients input[name='checkbox']").click(function() {
     // add logic to pop() when removing and push() when adding
     $("#matched-recipes").empty();
@@ -547,28 +548,23 @@ $(document).ready(function() {
     }
 
     recipeDB.forEach(function(recipe) {
-      // var fullMatches = [];
-      // var fullMatchRecipe = fullMatch(recipe, matchIngredients(recipe, checkedIngredients));
-      // fullMatches.push(fullMatchRecipe);
-
-      var partialMatches = [];
-      var partialMatchedRecipe = partialMatch(recipe, matchIngredients(recipe, checkedIngredients));
-      partialMatches.push(partialMatchedRecipe);
-
       var recipeID = recipe.name+'_id'+recipe.id;
+      var fullMatchRecipe = fullMatch(recipe, matchIngredients(recipe, checkedIngredients));
+      if (fullMatchRecipe !== undefined)
+      {
+        appendMatchedRecipe(fullMatchRecipe, recipeID, "#matched-recipes");
+      }
 
-      // fullMatches.forEach(function(recipe) {
-      //   appendMatchedRecipe(recipe, recipeID, "#matched-recipes");
-      // })
-
-      console.log(partialMatches)
-      partialMatches.forEach(function(recipe) {
-        var recipeIndex = partialMatches.indexOf(recipe);
-        if (recipeIndex === -1)
+      var partialMatchedRecipe = partialMatch(recipe, matchIngredients(recipe, checkedIngredients));
+      if (partialMatchedRecipe !== undefined)
+      {
+        console.log(partialMatches.indexOf(partialMatchedRecipe))
+        if (partialMatches.indexOf(partialMatchedRecipe) === -1)
         {
-          appendMatchedRecipe(recipe, recipeID+"_p", "#partial-matched-recipes");
+          partialMatches.push(partialMatchedRecipe);
+          appendMatchedRecipe(partialMatchedRecipe, recipeID+"_p", "#partial-matched-recipes");
         }
-      })
+      }
     })
     console.log("checkedIngredients array: " + checkedIngredients);
   })
