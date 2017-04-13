@@ -267,8 +267,46 @@ var recipeDB = [
   },
   {
     "id" : 8,
-    "name" : "bbq_chicken_nachos",
+    "name" : "spaghetti_with_meatball",
     "image" : "http://www.traderjoes.com/images/recipes/52MainImage.jpg",
+    "ingredients" : [
+      "spaghetti",
+      "meatballs",
+      "olive_oil",
+      "marinara",
+      "parmesan_cheese",
+      "salt",
+      "pepper"
+    ],
+    "cuisine" : "italian",
+    "time" : 30,
+    "calories" : 1200,
+    "vegetarian" : false,
+    "breakfast" : false,
+    "lunch": true,
+    "dinner" : true,
+    "ingredientsList" : [
+      "1/2 Spaghetti",
+      "1/2 package meatballs",
+      "Olive Oil",
+      "1 tablespoon parmesan_cheese",
+      "1/4 teaspoon of salt",
+      "1/4 teaspoon of pepper"
+    ],
+    "directionsList" : [
+      "Cook the spaghetti.",
+      "Season with salt and pepper, place in a microwave safe dish and add about an inch of water to the bottom of the dish.",
+      "Cover dish with cling wrap and microwave on high for 10-14 minutes. Allow to cool enough to handle before unwrapping.",
+      "Use a table fork to scrape squash from top to bottom to separate flesh into strands of spaghetti.",
+      "Prepare Meatball Marinara: Place meatballs in large skillet.",
+      "Once warmed through, add marinara sauce and cooked spaghetti.",
+      "Toss to cover and heat through; add Parmesan, salt and pepper, to taste. Serve right away."
+    ]
+  }
+  {
+    "id" : 9,
+    "name" : "bbq_chicken_nachos",
+    "image" : "http://www.traderjoes.com/images/recipes/172MainImage.jpg",
     "ingredients" : [
       "tortilla_chips",
       "pulled_chicken_breast",
@@ -278,7 +316,6 @@ var recipeDB = [
       "onion",
       "ranch_dressing",
       "cilantro"
-
     ],
     "cuisine" : "mexican",
     "time" : 15,
