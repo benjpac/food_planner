@@ -75,7 +75,7 @@ var recipeDB = [
   {
     "id": 3,
     "name" : "classic_italian_lasagna",
-    "image" : "http://www.forgottothink.com/wp-content/uploads/2016/06/italian-dishes-6.jpg",
+    "image" : "img/lasagna.jpg",
     "ingredients" : [
       "beef",
       "onion",
@@ -192,7 +192,7 @@ var recipeDB = [
   {
     "id" : 6,
     "name" : "sausage_breakfast_sandwich",
-    "image" : "http://www.twopeasandtheirpod.com/wp-content/uploads/2013/12/Sausage-Egg-and-Cheese-Sandwich-with-Maple-Butter-3.jpg",
+    "image" : "img/breakfast_sandwich.jpg",
     "ingredients" : [
       "pork_sausage",
       "egg",
@@ -224,7 +224,7 @@ var recipeDB = [
   {
     "id": 7,
     "name" : "butter_chicken",
-    "image" : "http://noshingwiththenolands.com/wp-content/uploads/2016/03/Slow-Cooker-Butter-Chicken-square-Custom.jpg",
+    "image" : "img/butter_chicken.jpg",
     "ingredients" : [
       "onion",
       "garlic",
@@ -267,18 +267,55 @@ var recipeDB = [
   },
   {
     "id" : 8,
-    "name" : "bbq_chicken_nachos",
+    "name" : "spaghetti_with_meatball",
     "image" : "http://www.traderjoes.com/images/recipes/52MainImage.jpg",
+    "ingredients" : [
+      "spaghetti",
+      "meatballs",
+      "olive_oil",
+      "marinara",
+      "parmesan_cheese",
+      "salt",
+      "pepper"
+    ],
+    "cuisine" : "italian",
+    "time" : 30,
+    "calories" : 1200,
+    "vegetarian" : false,
+    "breakfast" : false,
+    "lunch": true,
+    "dinner" : true,
+    "ingredientsList" : [
+      "1/2 Spaghetti",
+      "1/2 package meatballs",
+      "Olive Oil",
+      "1 tablespoon parmesan_cheese",
+      "1/4 teaspoon of salt",
+      "1/4 teaspoon of pepper"
+    ],
+    "directionsList" : [
+      "Cook the spaghetti.",
+      "Season with salt and pepper, place in a microwave safe dish and add about an inch of water to the bottom of the dish.",
+      "Cover dish with cling wrap and microwave on high for 10-14 minutes. Allow to cool enough to handle before unwrapping.",
+      "Use a table fork to scrape squash from top to bottom to separate flesh into strands of spaghetti.",
+      "Prepare Meatball Marinara: Place meatballs in large skillet.",
+      "Once warmed through, add marinara sauce and cooked spaghetti.",
+      "Toss to cover and heat through; add Parmesan, salt and pepper, to taste. Serve right away."
+    ]
+  },
+  {
+    "id" : 9,
+    "name" : "bbq_chicken_nachos",
+    "image" : "http://www.traderjoes.com/images/recipes/172MainImage.jpg",
     "ingredients" : [
       "tortilla_chips",
       "pulled_chicken_breast",
       "barbecue_sauce",
-      "cheese",
+      "cheddar_cheese",
       "roasted_corn",
-      "red_onion",
+      "onion",
       "ranch_dressing",
       "cilantro"
-
     ],
     "cuisine" : "mexican",
     "time" : 15,
@@ -306,29 +343,68 @@ var recipeDB = [
   }
 ]
 
-// find recipes that user has ingredients for
-function matchedIngredients(recipeIngredients, userIngredients) {
+// // find recipes that user has ingredients for
+// function matchIngredients(recipeIngredients, userIngredients) {
+//   var matchCount = 0;
+//   userIngredients.forEach(function(userIngredient) {
+//     recipeIngredients.forEach(function(recipeIngredient) {
+//       if (userIngredient === recipeIngredient) {
+//         matchCount++;
+//       }
+//     })
+//   })
+//   return [matchCount, recipeIngredients.length];
+// }
+//
+// // matchArray = [matchCount, recipeIngredients.length]
+// function fullMatch(matchArray) {
+//   if (matchArray[0] === matchArray[1]) {
+//     return true;
+//   }
+//   else
+//   {
+//     return false;
+//   }
+// }
+//
+// // matchArray = [matchCount, recipeIngredients.length]
+// function partialMatch(matchArray) {
+//   var
+//   if (matchArray[0] >= (matchArray[1]*(0.5))) {
+//     return true;
+//   }
+//   else
+//   {
+//     return false;
+//   }
+// }
+
+function matchIngredients(recipe, checkedIngredients) {
   var matchCount = 0;
-  userIngredients.forEach(function(userIngredient) {
-    recipeIngredients.forEach(function(recipeIngredient) {
-      if (userIngredient === recipeIngredient) {
+  checkedIngredients.forEach(function(checkedIngredient) {
+    recipe.ingredients.forEach(function(recipeIngredient) {
+      if (checkedIngredient === recipeIngredient)
+      {
         matchCount++;
       }
     })
   })
-  // console.log("match count:" +matchCount);
-  if (matchCount === recipeIngredients.length) {
-    return true;
-  }
-  else
+  return matchCount;
+}
+
+function partialMatch(recipe, matchCount) {
+  if (matchCount >= (recipe.ingredients.length*(0.5)))
   {
-    return false;
+    return recipe;
   }
 }
 
-// function noMatchArray(array) {
-//
-// }
+function fullMatch(recipe, matchCount) {
+  if (matchCount === recipe.ingredients.length)
+  {
+    return recipe;
+  }
+}
 
 // gather all ingredients from recipeDB and display as list with no duplicates, sort
 function parseRecipes(recipeDB) {
@@ -377,6 +453,67 @@ function mealString(breakfast, lunch, dinner) {
   return meals;
 }
 
+function appendMatchedRecipe(recipe, id, div) {
+  var nameFormatted = formatForFrontend(recipe.name);
+  $(div).append(
+    '<div class="col-6 col-lg-4">'+
+      '<div class="card">'+
+        '<div id='+id+'>'+
+          '<img class="card-img-top img-fluid" src='+recipe.image+'>'+
+          '<h6 class="card-title text-center mt-2">'+nameFormatted+'</h6>'+
+        '</div>'+
+      '</div>'+
+    '</div>'
+  )
+  $(div).click(function() {
+   $("#main-content").hide();
+   var cuisineFormatted = formatForFrontend(recipe.cuisine);
+   var mealsFormatted = mealString(recipe.breakfast, recipe.lunch, recipe.dinner);
+   $("#recipe-full").append(
+     '<div class="recipe-head text-center">'+
+      '<h1>'+nameFormatted+'</h1>'+
+      '<p class="lead">'+
+      '</p>'+
+      '<hr>'+
+      '<div class="row">'+
+        '<div class="col-sm-3"><p>Cuisine: '+cuisineFormatted+'</p></div>'+
+        '<div class="col-sm-3"><p>Meal: '+mealsFormatted+'</p></div>'+
+        '<div class="col-sm-3"><p>Time: '+recipe.time+' minutes</p></div>'+
+        '<div class="col-sm-3"><p>Calories: '+recipe.calories+'</p></div>'+
+      '</div>'+
+      '<hr>'+
+      '<img class="img-fluid" src='+recipe.image+' alt="">'+
+      '<hr>'+
+    '</div>'+
+    '<div class="row mt-4" >'+
+      '<div class="col-lg-6 pl-5">'+
+        '<div class="recipe-ingredients">'+
+          '<h4>Ingredients: </h4>'+
+          '<ul id='+id+'_ingredients>'+
+
+          '</ul>'+
+        '</div>'+
+      '</div>'+
+      '<div class="col-lg-6">'+
+        '<div class="recipe-directions">'+
+          '<h4>Directions: </h4>'+
+          '<ol id='+id+'_directions>'+
+
+          '</ol>'+
+        '</div>'+
+      '</div>'+
+    '</div>'
+    )
+    recipe.ingredientsList.forEach(function(line) {
+      $('#'+id+'_ingredients').append('<li>'+line+'</li>');
+    })
+    recipe.directionsList.forEach(function(line) {
+      $('#'+id+'_directions').append('<li>'+line+'</li>');
+    })
+  })
+}
+
+
 $(document).ready(function() {
   var recipeIngredients = parseRecipes(recipeDB);
   recipeIngredients.forEach(function(myIngredient)
@@ -392,91 +529,43 @@ $(document).ready(function() {
     )
   })
 
-  var checkedIngredient = [];
+  var checkedIngredients = [];
+  var partialMatches = [];
   $("#my-ingredients input[name='checkbox']").click(function() {
     // add logic to pop() when removing and push() when adding
     $("#matched-recipes").empty();
     if (this.checked)
     {
-      checkedIngredient.push($(this).val());
+      checkedIngredients.push($(this).val());
     }
     else
     {
-      var ingredientIndex = checkedIngredient.indexOf($(this).val());
+      var ingredientIndex = checkedIngredients.indexOf($(this).val());
       if (ingredientIndex > -1)
       {
-        checkedIngredient.splice(ingredientIndex, 1);
+        checkedIngredients.splice(ingredientIndex, 1);
       }
     }
+
     recipeDB.forEach(function(recipe) {
-      var matchedRecipes = [];
-      var matchedRecipe = matchedIngredients(recipe.ingredients, checkedIngredient)
-      if (matchedRecipe)
+      var recipeID = recipe.name+'_id'+recipe.id;
+      var fullMatchRecipe = fullMatch(recipe, matchIngredients(recipe, checkedIngredients));
+      if (fullMatchRecipe !== undefined)
       {
-        var nameFormatted = formatForFrontend(recipe.name);
-        console.log(matchedRecipe)
-        console.log(matchedRecipes)
-        var recipeID = recipe.name+'_id'+recipe.id;
-        matchedRecipes.push(recipe)
-        $("#matched-recipes").append(
-          '<div class="col-6 col-lg-4">'+
-            '<div class="card">'+
-              '<div id='+recipeID+'>'+
-                '<img class="card-img-top img-fluid" src='+recipe.image+'>'+
-                '<h6 class="card-title text-center mt-2">'+nameFormatted+'</h6>'+
-              '</div>'+
-            '</div>'+
-          '</div>'
-        )
+        appendMatchedRecipe(fullMatchRecipe, recipeID, "#matched-recipes");
       }
 
-      $("#"+recipeID).click(function() {
-       $("#main-content").hide();
-       var cuisineFormatted = formatForFrontend(recipe.cuisine);
-       var mealsFormatted = mealString(recipe.breakfast, recipe.lunch, recipe.dinner);
-       $("#recipe-full").append(
-         '<div class="recipe-head text-center">'+
-          '<h1>'+nameFormatted+'</h1>'+
-          '<p class="lead">'+
-          '</p>'+
-          '<hr>'+
-          '<div class="row">'+
-            '<div class="col-sm-3"><p>Cuisine: '+cuisineFormatted+'</p></div>'+
-            '<div class="col-sm-3"><p>Meal: '+mealsFormatted+'</p></div>'+
-            '<div class="col-sm-3"><p>Time: '+recipe.time+' minutes</p></div>'+
-            '<div class="col-sm-3"><p>Calories: '+recipe.calories+'</p></div>'+
-          '</div>'+
-          '<hr>'+
-          '<img class="img-fluid" src='+recipe.image+' alt="">'+
-          '<hr>'+
-        '</div>'+
-        '<div class="row mt-4" >'+
-          '<div class="col-lg-6 pl-5">'+
-            '<div class="recipe-ingredients">'+
-              '<h4>Ingredients: </h4>'+
-              '<ul id='+recipeID+'_ingredients>'+
-
-              '</ul>'+
-            '</div>'+
-          '</div>'+
-          '<div class="col-lg-6">'+
-            '<div class="recipe-directions">'+
-              '<h4>Directions: </h4>'+
-              '<ol id='+recipeID+'_directions>'+
-
-              '</ol>'+
-            '</div>'+
-          '</div>'+
-        '</div>'
-        );
-        recipe.ingredientsList.forEach(function(line) {
-          $('#'+recipeID+'_ingredients').append('<li>'+line+'</li>');
-        });
-        recipe.directionsList.forEach(function(line) {
-          $('#'+recipeID+'_directions').append('<li>'+line+'</li>');
-        });
-      });
-    });
-    console.log("checkedIngredient array: " + checkedIngredient);
-  });
-});
+      var partialMatchedRecipe = partialMatch(recipe, matchIngredients(recipe, checkedIngredients));
+      if (partialMatchedRecipe !== undefined)
+      {
+        console.log(partialMatches.indexOf(partialMatchedRecipe))
+        if (partialMatches.indexOf(partialMatchedRecipe) === -1)
+        {
+          partialMatches.push(partialMatchedRecipe);
+          appendMatchedRecipe(partialMatchedRecipe, recipeID+"_p", "#partial-matched-recipes");
+        }
+      }
+    })
+    console.log("checkedIngredients array: " + checkedIngredients);
+  })
+})
