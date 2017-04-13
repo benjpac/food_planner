@@ -497,67 +497,8 @@ function createMatchedRecipeCard(recipe, idAppend, div) {
     $("#main-content").hide();
     $('#'+id+'_full').show();
     console.log("on click open "+div + " with id " +id);
-    // var cuisineFormatted = formatForFrontend(recipe.cuisine);
-    // var mealsFormatted = mealString(recipe.breakfast, recipe.lunch, recipe.dinner);
-    // $("#recipe-full").append(
-    //   '<div id='+id+'_full>'+
-    //     '<div class="row">'+
-    //       '<div class="col-sm-1 offset-sm-11">'+
-    //         '<img class="close-recipe mt-3" src="img/cross.png">'+
-    //       '</div>'+
-    //     '</div>'+
-    //     '<div class="recipe-head text-center">'+
-    //      '<h1>'+nameFormatted+'</h1>'+
-    //      '<p class="lead">'+
-    //      '</p>'+
-    //      '<hr>'+
-    //      '<div class="row">'+
-    //        '<div class="col-sm-3"><p>Cuisine: '+cuisineFormatted+'</p></div>'+
-    //        '<div class="col-sm-3"><p>Meal: '+mealsFormatted+'</p></div>'+
-    //        '<div class="col-sm-3"><p>Time: '+recipe.time+' minutes</p></div>'+
-    //        '<div class="col-sm-3"><p>Calories: '+recipe.calories+'</p></div>'+
-    //      '</div>'+
-    //      '<hr>'+
-    //      '<img class="img-fluid" src='+recipe.image+' alt="">'+
-    //      '<hr>'+
-    //     '</div>'+
-    //     '<div class="row mt-4" >'+
-    //      '<div class="col-lg-6 pl-5">'+
-    //        '<div class="recipe-ingredients">'+
-    //          '<h4>Ingredients: </h4>'+
-    //          '<ul id='+id+'_ingredients>'+
-    //
-    //          '</ul>'+
-    //        '</div>'+
-    //      '</div>'+
-    //      '<div class="col-lg-6">'+
-    //        '<div class="recipe-directions">'+
-    //          '<h4>Directions: </h4>'+
-    //          '<ol id='+id+'_directions>'+
-    //
-    //          '</ol>'+
-    //        '</div>'+
-    //      '</div>'+
-    //    '</div>'+
-    //   '</div>'
-    // )
-    // recipe.ingredientsList.forEach(function(line) {
-    //   $('#'+id+'_ingredients').append('<li>'+line+'</li>');
-    // })
-    // recipe.directionsList.forEach(function(line) {
-    //   $('#'+id+'_directions').append('<li>'+line+'</li>');
-    // })
-    // $(".close-recipe").click(function() {
-    //   $("#recipe-full").hide();
-    //   $("#main-content").show();
-    // })
   })
 }
-
-// function createFullRecipe(div) {
-//
-// }
-
 
 $(document).ready(function() {
   var recipeIngredients = parseRecipes(recipeDB);
@@ -621,11 +562,4 @@ $(document).ready(function() {
     })
     console.log("checkedIngredients array: " + checkedIngredients);
   })
-  // $(div).click(function() {
-  //   $("#main-content").hide();
-  //
-  //   $(".close-recipe").click(function() {
-  //     $("#recipe-full").hide();
-  //     $("#main-content").show();
-  //   })
 })
