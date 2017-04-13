@@ -275,7 +275,7 @@ var recipeDB = [
       "barbecue_sauce",
       "cheddar_cheese",
       "roasted_corn",
-      "red_onion",
+      "onion",
       "ranch_dressing",
       "cilantro"
 
@@ -306,29 +306,67 @@ var recipeDB = [
   }
 ]
 
-// find recipes that user has ingredients for
-function matchedIngredients(recipeIngredients, userIngredients) {
+// // find recipes that user has ingredients for
+// function matchIngredients(recipeIngredients, userIngredients) {
+//   var matchCount = 0;
+//   userIngredients.forEach(function(userIngredient) {
+//     recipeIngredients.forEach(function(recipeIngredient) {
+//       if (userIngredient === recipeIngredient) {
+//         matchCount++;
+//       }
+//     })
+//   })
+//   return [matchCount, recipeIngredients.length];
+// }
+//
+// // matchArray = [matchCount, recipeIngredients.length]
+// function fullMatch(matchArray) {
+//   if (matchArray[0] === matchArray[1]) {
+//     return true;
+//   }
+//   else
+//   {
+//     return false;
+//   }
+// }
+//
+// // matchArray = [matchCount, recipeIngredients.length]
+// function partialMatch(matchArray) {
+//   var
+//   if (matchArray[0] >= (matchArray[1]*(0.5))) {
+//     return true;
+//   }
+//   else
+//   {
+//     return false;
+//   }
+// }
+
+function matchIngredients(recipe, checkedIngredients) {
   var matchCount = 0;
-  userIngredients.forEach(function(userIngredient) {
-    recipeIngredients.forEach(function(recipeIngredient) {
-      if (userIngredient === recipeIngredient) {
+  userIngredients.forEach(function(checkedIngredient) {
+    recipe.ingredients.forEach(function(recipeIngredient) {
+      if (checkedIngredient === recipeIngredient)
+      {
         matchCount++;
       }
     })
   })
-  // console.log("match count:" +matchCount);
-  if (matchCount === recipeIngredients.length) {
-    return true;
-  }
-  else
+  return matchCount;
+
+function partialMatch(recipe, matchCount) {
+  if (matchCount >= (recipe.ingredients.length*(0.5)))
   {
-    return false;
+    return recipe;
   }
 }
 
-// function noMatchArray(array) {
-//
-// }
+function fullMatch(recipe, matchCount) {
+  if (matchCount === recipe.ingredients.length)
+  {
+    return recipe;
+  }
+}
 
 // gather all ingredients from recipeDB and display as list with no duplicates, sort
 function parseRecipes(recipeDB) {
@@ -377,6 +415,67 @@ function mealString(breakfast, lunch, dinner) {
   return meals;
 }
 
+function appendMatchedRecipe(recipe, id, div) {
+  var nameFormatted = formatForFrontend(recipe.name);
+  $(div).append(
+    '<div class="col-6 col-lg-4">'+
+      '<div class="card">'+
+        '<div id='+id+'>'+
+          '<img class="card-img-top img-fluid" src='+recipe.image+'>'+
+          '<h6 class="card-title text-center mt-2">'+nameFormatted+'</h6>'+
+        '</div>'+
+      '</div>'+
+    '</div>'
+  )
+  $(div).click(function() {
+   $("#main-content").hide();
+   var cuisineFormatted = formatForFrontend(recipe.cuisine);
+   var mealsFormatted = mealString(recipe.breakfast, recipe.lunch, recipe.dinner);
+   $("#recipe-full").append(
+     '<div class="recipe-head text-center">'+
+      '<h1>'+nameFormatted+'</h1>'+
+      '<p class="lead">'+
+      '</p>'+
+      '<hr>'+
+      '<div class="row">'+
+        '<div class="col-sm-3"><p>Cuisine: '+cuisineFormatted+'</p></div>'+
+        '<div class="col-sm-3"><p>Meal: '+mealsFormatted+'</p></div>'+
+        '<div class="col-sm-3"><p>Time: '+recipe.time+' minutes</p></div>'+
+        '<div class="col-sm-3"><p>Calories: '+recipe.calories+'</p></div>'+
+      '</div>'+
+      '<hr>'+
+      '<img class="img-fluid" src='+recipe.image+' alt="">'+
+      '<hr>'+
+    '</div>'+
+    '<div class="row mt-4" >'+
+      '<div class="col-lg-6 pl-5">'+
+        '<div class="recipe-ingredients">'+
+          '<h4>Ingredients: </h4>'+
+          '<ul id='+id+'_ingredients>'+
+
+          '</ul>'+
+        '</div>'+
+      '</div>'+
+      '<div class="col-lg-6">'+
+        '<div class="recipe-directions">'+
+          '<h4>Directions: </h4>'+
+          '<ol id='+id+'_directions>'+
+
+          '</ol>'+
+        '</div>'+
+      '</div>'+
+    '</div>'
+    )
+    recipe.ingredientsList.forEach(function(line) {
+      $('#'+id+'_ingredients').append('<li>'+line+'</li>');
+    })
+    recipe.directionsList.forEach(function(line) {
+      $('#'+id+'_directions').append('<li>'+line+'</li>');
+    })
+  })
+}
+
+
 $(document).ready(function() {
   var recipeIngredients = parseRecipes(recipeDB);
   recipeIngredients.forEach(function(myIngredient)
@@ -392,91 +491,46 @@ $(document).ready(function() {
     )
   })
 
-  var checkedIngredient = [];
+  var checkedIngredients = [];
   $("#my-ingredients input[name='checkbox']").click(function() {
     // add logic to pop() when removing and push() when adding
     $("#matched-recipes").empty();
     if (this.checked)
     {
-      checkedIngredient.push($(this).val());
+      checkedIngredients.push($(this).val());
     }
     else
     {
-      var ingredientIndex = checkedIngredient.indexOf($(this).val());
+      var ingredientIndex = checkedIngredients.indexOf($(this).val());
       if (ingredientIndex > -1)
       {
-        checkedIngredient.splice(ingredientIndex, 1);
+        checkedIngredients.splice(ingredientIndex, 1);
       }
     }
+
     recipeDB.forEach(function(recipe) {
-      var matchedRecipes = [];
-      var matchedRecipe = matchedIngredients(recipe.ingredients, checkedIngredient)
-      if (matchedRecipe)
-      {
-        var nameFormatted = formatForFrontend(recipe.name);
-        console.log(matchedRecipe)
-        console.log(matchedRecipes)
-        var recipeID = recipe.name+'_id'+recipe.id;
-        matchedRecipes.push(recipe)
-        $("#matched-recipes").append(
-          '<div class="col-6 col-lg-4">'+
-            '<div class="card">'+
-              '<div id='+recipeID+'>'+
-                '<img class="card-img-top img-fluid" src='+recipe.image+'>'+
-                '<h6 class="card-title text-center mt-2">'+nameFormatted+'</h6>'+
-              '</div>'+
-            '</div>'+
-          '</div>'
-        )
-      }
+      var fullMatches = [];
+      var fullMatchRecipe = fullMatch(matchIngredients(recipe, checkedIngredients));
+      fullMatches.push(fullMatchRecipe);
 
-      $("#"+recipeID).click(function() {
-       $("#main-content").hide();
-       var cuisineFormatted = formatForFrontend(recipe.cuisine);
-       var mealsFormatted = mealString(recipe.breakfast, recipe.lunch, recipe.dinner);
-       $("#recipe-full").append(
-         '<div class="recipe-head text-center">'+
-          '<h1>'+nameFormatted+'</h1>'+
-          '<p class="lead">'+
-          '</p>'+
-          '<hr>'+
-          '<div class="row">'+
-            '<div class="col-sm-3"><p>Cuisine: '+cuisineFormatted+'</p></div>'+
-            '<div class="col-sm-3"><p>Meal: '+mealsFormatted+'</p></div>'+
-            '<div class="col-sm-3"><p>Time: '+recipe.time+' minutes</p></div>'+
-            '<div class="col-sm-3"><p>Calories: '+recipe.calories+'</p></div>'+
-          '</div>'+
-          '<hr>'+
-          '<img class="img-fluid" src='+recipe.image+' alt="">'+
-          '<hr>'+
-        '</div>'+
-        '<div class="row mt-4" >'+
-          '<div class="col-lg-6 pl-5">'+
-            '<div class="recipe-ingredients">'+
-              '<h4>Ingredients: </h4>'+
-              '<ul id='+recipeID+'_ingredients>'+
+      var partialMatches = [];
+      var partialMatchedRecipe = partialMatch(matchIngredients(recipe, checkedIngredients));
+      partialMatches.push(partialMatchedRecipe);
 
-              '</ul>'+
-            '</div>'+
-          '</div>'+
-          '<div class="col-lg-6">'+
-            '<div class="recipe-directions">'+
-              '<h4>Directions: </h4>'+
-              '<ol id='+recipeID+'_directions>'+
+      var recipeID = recipe.name+'_id'+recipe.id;
 
-              '</ol>'+
-            '</div>'+
-          '</div>'+
-        '</div>'
-        );
-        recipe.ingredientsList.forEach(function(line) {
-          $('#'+recipeID+'_ingredients').append('<li>'+line+'</li>');
-        });
-        recipe.directionsList.forEach(function(line) {
-          $('#'+recipeID+'_directions').append('<li>'+line+'</li>');
-        });
-      });
-    });
-    console.log("checkedIngredient array: " + checkedIngredient);
-  });
-});
+      fullMatches.forEach(function(recipe) {
+        appendMatchedRecipe(recipe, recipeID, "#matched-recipes");
+      })
+
+      partialMatchArray.forEach(function(recipe) {
+        var recipeIndex = partialMatchArray.indexOf(recipe);
+        if (recipeIndex === -1)
+        {
+          appendMatchedRecipe(recipe, recipeID+"_p", "#partial-matched-recipes");
+        }
+      })
+    })
+    console.log("checkedIngredients array: " + checkedIngredients);
+  })
+})
