@@ -5,7 +5,7 @@
 
 # _Chef Things Up_
 
-#### _Food planner, with recipes easy to follow {04/13/2017}_
+#### _A food planner with recipes easy to follow. 04/13/2017_
 
 #### By _**Ben Metzger, Brian Fan, Chitroopa Manikkavasagam and Marcel Nogueira**_
 
@@ -21,7 +21,7 @@ _This is an application with the intention to help customers to prepare simple a
 * _easy-to-understand_
 * _format_
 
-_{Leave nothing to chance! You want it to be easy for potential users, employers and collaborators to run your app. Do I need to run a server? How should I set up my databases? Is there other code this app depends on?}_
+_Leave nothing to chance! You want it to be easy for potential users, employers and collaborators to run your app. Do I need to run a server? How should I set up my databases? Is there other code this app depends on?_
 
 ## Known Bugs
 
