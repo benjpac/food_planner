@@ -515,7 +515,7 @@ $(document).ready(function() {
     )
   })
   recipeDB.forEach(function(recipe) {
-    createMatchedRecipeCard(recipe, "", "#all-recipes");
+    createMatchedRecipeCard(recipe, "_a", "#all-recipes");
   });
 
 
@@ -524,7 +524,7 @@ $(document).ready(function() {
   var partialMatches = [];
   $("#my-ingredients input[name='checkbox']").click(function() {
     // add logic to pop() when removing and push() when adding
-    $("#all-recipes").hide();
+    $("#all-recipes").empty();
     if (this.checked)
     {
       checkedIngredients.push($(this).val());
@@ -537,7 +537,7 @@ $(document).ready(function() {
         checkedIngredients.splice(ingredientIndex, 1);
       }
     }
-
+    // $("#partial-matched-recipes").children().empty();
     recipeDB.forEach(function(recipe) {
       var fullMatchRecipe = fullMatch(recipe, matchIngredients(recipe, checkedIngredients));
       if (fullMatchRecipe !== undefined)
@@ -545,6 +545,7 @@ $(document).ready(function() {
         console.log("full match index: " + fullMatches.indexOf(fullMatchRecipe))
         if (fullMatches.indexOf(fullMatchRecipe) === -1)
         {
+          $('#'+fullMatchRecipe.name+'_id'+fullMatchRecipe.id+'_p').parents().eq(1).hide();
           fullMatches.push(fullMatchRecipe);
           console.log("full matches: ");
           console.log(fullMatchRecipe);
