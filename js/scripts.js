@@ -514,12 +514,17 @@ $(document).ready(function() {
       '</div>'
     )
   })
+  recipeDB.forEach(function(recipe) {
+    createMatchedRecipeCard(recipe, "", "#all-recipes");
+  });
+
 
   var checkedIngredients = [];
   var fullMatches = [];
   var partialMatches = [];
   $("#my-ingredients input[name='checkbox']").click(function() {
     // add logic to pop() when removing and push() when adding
+    $("#all-recipes").hide();
     if (this.checked)
     {
       checkedIngredients.push($(this).val());
