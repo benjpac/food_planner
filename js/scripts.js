@@ -523,8 +523,8 @@ $(document).ready(function() {
   var fullMatches = [];
   var partialMatches = [];
   $("#my-ingredients input[name='checkbox']").click(function() {
-    // add logic to pop() when removing and push() when adding
     $("#all-recipes").empty();
+
     if (this.checked)
     {
       checkedIngredients.push($(this).val());
@@ -537,7 +537,6 @@ $(document).ready(function() {
         checkedIngredients.splice(ingredientIndex, 1);
       }
     }
-    // $("#partial-matched-recipes").children().empty();
     recipeDB.forEach(function(recipe) {
       var fullMatchRecipe = fullMatch(recipe, matchIngredients(recipe, checkedIngredients));
       if (fullMatchRecipe !== undefined)
@@ -547,12 +546,12 @@ $(document).ready(function() {
         {
           $('#'+fullMatchRecipe.name+'_id'+fullMatchRecipe.id+'_p').parents().eq(1).hide();
           fullMatches.push(fullMatchRecipe);
+          $(".instructions").hide();
           console.log("full matches: ");
           console.log(fullMatchRecipe);
           createMatchedRecipeCard(fullMatchRecipe, "", "#matched-recipes");
         }
       }
-
       var partialMatchedRecipe = partialMatch(recipe, matchIngredients(recipe, checkedIngredients));
       if (partialMatchedRecipe !== undefined)
       {
@@ -562,6 +561,7 @@ $(document).ready(function() {
           partialMatches.push(partialMatchedRecipe);
           console.log("partial matches: ");
           console.log(partialMatches);
+          $(".instructions").hide();
           createMatchedRecipeCard(partialMatchedRecipe, "_p", "#partial-matched-recipes");
         }
       }
