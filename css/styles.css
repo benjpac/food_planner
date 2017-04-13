@@ -60,7 +60,14 @@ body {
   padding: 2rem 0;
 }
 
-#partial-matched-recipes h3{
+#matched-recipes h3 {
+  display: none;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+#partial-matched-recipes h3 {
+  display: none;
   margin-top: 1rem;
   margin-bottom: 2rem;
 }

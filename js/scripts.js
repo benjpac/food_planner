@@ -549,6 +549,7 @@ $(document).ready(function() {
           $(".instructions").hide();
           console.log("full matches: ");
           console.log(fullMatchRecipe);
+          $("#matched-recipes h3").show();
           createMatchedRecipeCard(fullMatchRecipe, "", "#matched-recipes");
         }
       }
@@ -562,6 +563,7 @@ $(document).ready(function() {
           console.log("partial matches: ");
           console.log(partialMatches);
           $(".instructions").hide();
+          $("#partial-matched-recipes h3").show();
           createMatchedRecipeCard(partialMatchedRecipe, "_p", "#partial-matched-recipes");
         }
       }
