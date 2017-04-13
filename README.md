@@ -23,6 +23,17 @@ _This is an application with the intention to help customers to prepare simple a
 
 _Leave nothing to chance! You want it to be easy for potential users, employers and collaborators to run your app. Do I need to run a server? How should I set up my databases? Is there other code this app depends on?_
 
+## Specifications
+| Description |
+|-------------|
+| Gather all ingredients from recipeDB and display as list in "my ingredients" without duplicates |
+| Remove underscores and caps first letter of each word in "my ingredients" list |
+| Compare user checked ingredients with recipe ingredients |
+| Dynamically create HTML for matched recipe as "card" |
+| Dynamically create HTML for full recipe when user clicks corresponding recipe card |
+| Partially match (50%) user checked ingredients with recipe ingredients and display as card |
+| Show all recipes when user loads the page until they begin selecting ingredients |
+
 ## Known Bugs
 
 _Only the ones, you find in your own plate_
