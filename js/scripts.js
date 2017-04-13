@@ -302,7 +302,7 @@ var recipeDB = [
       "Once warmed through, add marinara sauce and cooked spaghetti.",
       "Toss to cover and heat through; add Parmesan, salt and pepper, to taste. Serve right away."
     ]
-  }
+  },
   {
     "id" : 9,
     "name" : "bbq_chicken_nachos",
@@ -381,7 +381,7 @@ var recipeDB = [
 
 function matchIngredients(recipe, checkedIngredients) {
   var matchCount = 0;
-  userIngredients.forEach(function(checkedIngredient) {
+  checkedIngredients.forEach(function(checkedIngredient) {
     recipe.ingredients.forEach(function(recipeIngredient) {
       if (checkedIngredient === recipeIngredient)
       {
@@ -390,6 +390,7 @@ function matchIngredients(recipe, checkedIngredients) {
     })
   })
   return matchCount;
+}
 
 function partialMatch(recipe, matchCount) {
   if (matchCount >= (recipe.ingredients.length*(0.5)))
@@ -546,22 +547,23 @@ $(document).ready(function() {
     }
 
     recipeDB.forEach(function(recipe) {
-      var fullMatches = [];
-      var fullMatchRecipe = fullMatch(matchIngredients(recipe, checkedIngredients));
-      fullMatches.push(fullMatchRecipe);
+      // var fullMatches = [];
+      // var fullMatchRecipe = fullMatch(recipe, matchIngredients(recipe, checkedIngredients));
+      // fullMatches.push(fullMatchRecipe);
 
       var partialMatches = [];
-      var partialMatchedRecipe = partialMatch(matchIngredients(recipe, checkedIngredients));
+      var partialMatchedRecipe = partialMatch(recipe, matchIngredients(recipe, checkedIngredients));
       partialMatches.push(partialMatchedRecipe);
 
       var recipeID = recipe.name+'_id'+recipe.id;
 
-      fullMatches.forEach(function(recipe) {
-        appendMatchedRecipe(recipe, recipeID, "#matched-recipes");
-      })
+      // fullMatches.forEach(function(recipe) {
+      //   appendMatchedRecipe(recipe, recipeID, "#matched-recipes");
+      // })
 
-      partialMatchArray.forEach(function(recipe) {
-        var recipeIndex = partialMatchArray.indexOf(recipe);
+      console.log(partialMatches)
+      partialMatches.forEach(function(recipe) {
+        var recipeIndex = partialMatches.indexOf(recipe);
         if (recipeIndex === -1)
         {
           appendMatchedRecipe(recipe, recipeID+"_p", "#partial-matched-recipes");
