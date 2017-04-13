@@ -421,7 +421,8 @@ function mealString(breakfast, lunch, dinner) {
 }
 
 // create all HTML for recipe
-function createMatchedRecipeCard(recipe, id, div) {
+function createMatchedRecipeCard(recipe, idAppend, div) {
+  var id = recipe.name+'_id'+recipe.id+idAppend;
   var nameFormatted = formatForFrontend(recipe.name);
   console.log(div, id);
   $(div).append(
@@ -487,14 +488,15 @@ function createMatchedRecipeCard(recipe, id, div) {
 
   $('#'+id+'_full').css("display", "none");
 
-  $(".close-recipe").click(function() {
+  $('#'+id+'_full .close-recipe').click(function() {
     $('#'+id+'_full').hide();
     $("#main-content").show();
+    console.log("on click close "+div + " with id " +id);
   })
   $('#'+id).click(function() {
     $("#main-content").hide();
     $('#'+id+'_full').show();
-    console.log("on click "+div + "id " +id);
+    console.log("on click open "+div + " with id " +id);
     // var cuisineFormatted = formatForFrontend(recipe.cuisine);
     // var mealsFormatted = mealString(recipe.breakfast, recipe.lunch, recipe.dinner);
     // $("#recipe-full").append(
@@ -573,10 +575,10 @@ $(document).ready(function() {
   })
 
   var checkedIngredients = [];
+  var fullMatches = [];
   var partialMatches = [];
   $("#my-ingredients input[name='checkbox']").click(function() {
     // add logic to pop() when removing and push() when adding
-    $("#matched-recipes").empty();
     if (this.checked)
     {
       checkedIngredients.push($(this).val());
@@ -591,23 +593,29 @@ $(document).ready(function() {
     }
 
     recipeDB.forEach(function(recipe) {
-      var recipeID = recipe.name+'_id'+recipe.id;
       var fullMatchRecipe = fullMatch(recipe, matchIngredients(recipe, checkedIngredients));
       if (fullMatchRecipe !== undefined)
       {
-        createMatchedRecipeCard(fullMatchRecipe, recipeID, "#matched-recipes");
-        console.log("fullMatch: " + recipeID);
+        console.log("full match index: " + fullMatches.indexOf(fullMatchRecipe))
+        if (fullMatches.indexOf(fullMatchRecipe) === -1)
+        {
+          fullMatches.push(fullMatchRecipe);
+          console.log("full matches: ");
+          console.log(fullMatchRecipe);
+          createMatchedRecipeCard(fullMatchRecipe, "", "#matched-recipes");
+        }
       }
 
       var partialMatchedRecipe = partialMatch(recipe, matchIngredients(recipe, checkedIngredients));
       if (partialMatchedRecipe !== undefined)
       {
-        console.log(partialMatches.indexOf(partialMatchedRecipe))
+        console.log("partial match index: " + partialMatches.indexOf(partialMatchedRecipe))
         if (partialMatches.indexOf(partialMatchedRecipe) === -1)
         {
           partialMatches.push(partialMatchedRecipe);
-          createMatchedRecipeCard(partialMatchedRecipe, recipeID+"_p", "#partial-matched-recipes");
-          console.log("partialMatch: " + recipeID+"_p");
+          console.log("partial matches: ");
+          console.log(partialMatches);
+          createMatchedRecipeCard(partialMatchedRecipe, "_p", "#partial-matched-recipes");
         }
       }
     })
