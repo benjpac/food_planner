@@ -60,6 +60,11 @@ body {
   padding: 2rem 0;
 }
 
+#partial-matched-recipes h3{
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
 
 .card {
   margin-bottom: 1.5rem;;
@@ -69,6 +74,8 @@ body {
   text-decoration: underline;;
   color: blue;
 }
+
+
 
 
 /*Recipe Content*/
