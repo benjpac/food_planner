@@ -32,11 +32,14 @@ _This is an application with the intention to help customers to prepare simple a
 
 ## Known Bugs
 
-_Only the ones, you find in your own plate_
+_Cards do not dynamically remove when matches no longer found_
 
-## Support and contact details
+## Specifications
+| Description |
+|-------------|
+| Allow user to add recipe and display it|
+| Filter content based on user selection|
 
-_If you have any questions and feedback please contact customerservice@ghostbusters.com_
 
 ## Technologies Used
 
