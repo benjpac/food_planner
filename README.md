@@ -34,10 +34,10 @@ _This is an application with the intention to help customers to prepare simple a
 
 _Cards do not dynamically remove when matches no longer found_
 
-## Specifications
+## Feature Additions
 | Description |
 |-------------|
-| Allow user to add recipe and display it|
+| Allow user to add recipe and display recipe|
 | Filter content based on user selection|
 
 
