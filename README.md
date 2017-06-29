@@ -5,6 +5,8 @@
 
 # _Chef Things Up_
 
+https://benjpac.github.io/food_planner/
+
 #### _A food planner with recipes easy to follow. 04/13/2017_
 
 #### By _**Ben Metzger, Brian Fan, Chitroopa Manikkavasagam and Marcel Nogueira**_
